@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品介绍 - 豆花之语</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">豆花之语</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html" class="active">产品介绍</a></li>
+                <li><a href="ingredients.html">原料介绍</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>我们的饮品</h1>
+                    <p>精心调配的豆类与花卉饮品，每一杯都是健康与美味的完美平衡</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">🔥 热饮系列</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">🌻</div>
+                        <div class="product-info">
+                            <h3 class="product-name">桂花黄豆奶茶</h3>
+                            <p class="product-description">精选东北优质黄豆，配以浓郁豆香与桂花清香，口感层次丰富。富含植物蛋白，美容养颜。</p>
+                            <div class="product-price">¥28</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🌹</div>
+                        <div class="product-info">
+                            <h3 class="product-name">玫瑰红豆拿铁</h3>
+                            <p class="product-description">优质红豆研磨制作，加入新鲜玫瑰花瓣，口感香甜。具有补血养颜、美容护肤的功效。</p>
+                            <div class="product-price">¥32</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🌺</div>
+                        <div class="product-info">
+                            <h3 class="product-name">洛神花黑豆热饮</h3>
+                            <p class="product-description">营养丰富的黑豆搭配天然洛神花，酸甜适中，具有抗氧化功效。</p>
+                            <div class="product-price">¥30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-pattern">
+            <div class="container">
+                <h2 class="section-title">🧊 冷饮系列</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">🌿</div>
+                        <div class="product-info">
+                            <h3 class="product-name">茉莉绿豆沙冰</h3>
+                            <p class="product-description">夏日解暑首选！新鲜绿豆制作的沙冰，加入茉莉花香，清热解毒，口感清爽。</p>
+                            <div class="product-price">¥26</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🌸</div>
+                        <div class="product-info">
+                            <h3 class="product-name">樱花豌豆冰茶</h3>
+                            <p class="product-description">颜值担当！粉嫩樱花配上清香豌豆，视觉与味觉的双重享受。</p>
+                            <div class="product-price">¥35</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">💜</div>
+                        <div class="product-info">
+                            <h3 class="product-name">薰衣草红豆奶昔</h3>
+                            <p class="product-description">浪漫薰衣草香与红豆的甜蜜结合，具有安神助眠的功效。</p>
+                            <div class="product-price">¥34</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p>&copy; 2024 豆花之语. 保留所有权利</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="微信">📱</a>
+                    <a href="#" title="微博">🐦</a>
+                    <a href="#" title="小红书">📖</a>
+                    <a href="#" title="抖音">🎵</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.product-card, .card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html> 
