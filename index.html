@@ -66,9 +66,10 @@
                             <p class="product-description">香甜桂花配上浓郁黄豆香，口感丰富，营养满分</p>
                             <div class="product-price">S$6.80</div>
                             <div class="order-buttons">
-                                <a href="https://wa.me/6512345678?text=Hi! I'd like to order 桂花黄豆奶茶 (Osmanthus Soybean Milk Tea) - S$6.80" 
-                                   class="order-btn whatsapp-btn" target="_blank">
-                                    📱 WhatsApp Order
+                                <a href="#" 
+                                   class="order-btn whatsapp-btn" 
+                                   data-message="🌱【豆豆谷订购】你好！我想订购：桂花黄豆奶茶 S$6.80。请问如何安排配送？谢谢！">
+                                    📱 WhatsApp订购
                                 </a>
                                 <a href="weixin://dl/chat?{微信号}" 
                                    class="order-btn wechat-btn">
@@ -84,9 +85,10 @@
                             <p class="product-description">浪漫玫瑰花瓣与红豆的甜蜜邂逅，颜值与美味并存</p>
                             <div class="product-price">S$7.50</div>
                             <div class="order-buttons">
-                                <a href="https://wa.me/6512345678?text=Hi! I'd like to order 玫瑰红豆拿铁 (Rose Red Bean Latte) - S$7.50" 
-                                   class="order-btn whatsapp-btn" target="_blank">
-                                    📱 WhatsApp Order
+                                <a href="#" 
+                                   class="order-btn whatsapp-btn" 
+                                   data-message="🌱【豆豆谷订购】你好！我想订购：玫瑰红豆拿铁 S$7.50。请问如何安排配送？谢谢！">
+                                    📱 WhatsApp订购
                                 </a>
                                 <a href="weixin://dl/chat?{微信号}" 
                                    class="order-btn wechat-btn">
@@ -102,9 +104,10 @@
                             <p class="product-description">清香茉莉花配绿豆，清热解毒，夏日首选</p>
                             <div class="product-price">S$6.20</div>
                             <div class="order-buttons">
-                                <a href="https://wa.me/6512345678?text=Hi! I'd like to order 茉莉绿豆沙冰 (Jasmine Mung Bean Smoothie) - S$6.20" 
-                                   class="order-btn whatsapp-btn" target="_blank">
-                                    📱 WhatsApp Order
+                                <a href="#" 
+                                   class="order-btn whatsapp-btn" 
+                                   data-message="🌱【豆豆谷订购】你好！我想订购：茉莉绿豆沙冰 S$6.20。请问如何安排配送？谢谢！">
+                                    📱 WhatsApp订购
                                 </a>
                                 <a href="weixin://dl/chat?{微信号}" 
                                    class="order-btn wechat-btn">
@@ -127,12 +130,15 @@
                     <div class="card">
                         <span class="card-icon">📱</span>
                         <h3>WhatsApp 订购</h3>
-                        <p>新加坡主要订购渠道<br>
-                        <strong>WhatsApp:</strong> +65 1234 5678<br>
-                        <strong>营业时间:</strong> 9:00 AM - 9:00 PM</p>
-                        <a href="https://wa.me/6512345678?text=Hi! I'm interested in Doodle Bean Brew products 🌟" 
-                           class="order-btn whatsapp-btn" target="_blank" style="margin-top: 1rem;">
-                            💬 Chat with us
+                        <p>新加坡个人定制服务<br>
+                        <strong>WhatsApp:</strong> 智能分配到团队成员<br>
+                        <strong>咨询时间:</strong> 随时留言，会及时回复<br>
+                        <em style="font-size: 0.9em; color: #666;">双人团队，真人服务每一位客户</em></p>
+                        <a href="#" 
+                           class="order-btn whatsapp-btn" 
+                           data-message="🌱【豆豆谷咨询】Hi! 我从官网看到豆豆谷 Doodle Bean Brew，想了解一下产品和订购方式。谢谢！"
+                           style="margin-top: 1rem;">
+                            💬 WhatsApp咨询
                         </a>
                     </div>
                     
@@ -202,7 +208,25 @@
     </footer>
 
     <script>
+        // WhatsApp随机分配系统
+        const whatsappNumbers = [
+            '6591012399',  // 用户本人
+            '6583009375'   // 合伙人
+        ];
+
+        function getRandomWhatsApp() {
+            const randomIndex = Math.floor(Math.random() * whatsappNumbers.length);
+            return whatsappNumbers[randomIndex];
+        }
+
+        function openWhatsAppChat(message) {
+            const selectedNumber = getRandomWhatsApp();
+            const whatsappUrl = `https://wa.me/${selectedNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // 滚动动画
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -213,6 +237,15 @@
 
             document.querySelectorAll('.card, .product-card').forEach(el => {
                 observer.observe(el);
+            });
+
+            // 绑定WhatsApp按钮点击事件
+            document.querySelectorAll('.whatsapp-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const message = this.getAttribute('data-message');
+                    openWhatsAppChat(message);
+                });
             });
         });
     </script>
