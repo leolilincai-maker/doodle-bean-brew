@@ -146,7 +146,7 @@
                         <span class="card-icon">💬</span>
                         <h3>微信订购</h3>
                         <p>华人群体专属服务<br>
-                        <strong>微信号:</strong> [待注册]<br>
+                        <strong>微信号:</strong> 18565651233<br>
                         <strong>服务时间:</strong> 9:00 AM - 9:00 PM</p>
                         <div class="order-btn wechat-btn" style="margin-top: 1rem; cursor: pointer;" 
                              onclick="showWeChatInfo()">
@@ -229,18 +229,27 @@
         function showWeChatInfo() {
             const message = `💬 微信咨询 - 豆豆谷
 
-请选择联系方式：
+请添加微信号进行咨询：
 
-📱 方式1: WhatsApp（推荐）
-• 点击任意产品的WhatsApp按钮
-• 即时响应，服务更快
+📱 微信号：18565651233
 
-💬 方式2: 微信
-• 微信号：[即将开放]
-• 我们正在为您准备专用微信客服
-• 暂时可先使用WhatsApp
+添加时请备注：豆豆谷咨询
+这样我能快速识别和回复您！
 
-感谢您的理解！🌱`;
+⏰ 微信回复时间：
+• 工作日：晚上统一回复
+• 周末：上午/下午集中回复
+
+🔥 急需订购建议使用WhatsApp（即时回复）
+
+感谢理解！🌱`;
+            
+            // 复制微信号到剪贴板（如果浏览器支持）
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText('18565651233').then(() => {
+                    console.log('微信号已复制到剪贴板');
+                });
+            }
             
             alert(message);
         }
