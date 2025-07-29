@@ -264,6 +264,62 @@ main {
     font-size: 1.2rem;
     color: var(--accent-color);
     font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.order-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.order-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.5rem 0.8rem;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid;
+    display: inline-block;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+    border-color: #25D366;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    border-color: #128C7E;
+    transform: translateY(-2px);
+}
+
+.wechat-btn {
+    background: #07C160;
+    color: white;
+    border-color: #07C160;
+}
+
+.wechat-btn:hover {
+    background: #06A94D;
+    border-color: #06A94D;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .order-buttons {
+        flex-direction: column;
+    }
+    
+    .order-btn {
+        min-width: auto;
+        margin-bottom: 0.5rem;
+    }
 }
 
 footer {
