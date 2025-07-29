@@ -47,7 +47,7 @@
                                    data-message="🌱【豆豆谷订购】你好！我想订购：桂花黄豆奶茶 S$6.80。请问如何安排配送？谢谢！">
                                     📱 WhatsApp订购
                                 </a>
-                                <a href="weixin://dl/chat?{微信号}" 
+                                <a href="#" onclick="showWeChatInfo()" 
                                    class="order-btn wechat-btn">
                                     💬 微信订购
                                 </a>
@@ -67,7 +67,7 @@
                                    data-message="🌱【豆豆谷订购】你好！我想订购：玫瑰红豆拿铁 S$7.50。请问如何安排配送？谢谢！">
                                     📱 WhatsApp订购
                                 </a>
-                                <a href="weixin://dl/chat?{微信号}" 
+                                <a href="#" onclick="showWeChatInfo()" 
                                    class="order-btn wechat-btn">
                                     💬 微信订购
                                 </a>
@@ -87,7 +87,7 @@
                                    data-message="🌱【豆豆谷订购】你好！我想订购：洛神花黑豆热饮 S$7.20。请问如何安排配送？谢谢！">
                                     📱 WhatsApp订购
                                 </a>
-                                <a href="weixin://dl/chat?{微信号}" 
+                                <a href="#" onclick="showWeChatInfo()" 
                                    class="order-btn wechat-btn">
                                     💬 微信订购
                                 </a>
@@ -114,7 +114,7 @@
                                    data-message="🌱【豆豆谷订购】你好！我想订购：茉莉绿豆沙冰 S$6.20。请问如何安排配送？谢谢！">
                                     📱 WhatsApp订购
                                 </a>
-                                <a href="weixin://dl/chat?{微信号}" 
+                                <a href="#" onclick="showWeChatInfo()" 
                                    class="order-btn wechat-btn">
                                     💬 微信订购
                                 </a>
@@ -134,7 +134,7 @@
                                    data-message="🌱【豆豆谷订购】你好！我想订购：樱花豌豆冰茶 S$8.50。请问如何安排配送？谢谢！">
                                     📱 WhatsApp订购
                                 </a>
-                                <a href="weixin://dl/chat?{微信号}" 
+                                <a href="#" onclick="showWeChatInfo()" 
                                    class="order-btn wechat-btn">
                                     💬 微信订购
                                 </a>
@@ -154,7 +154,7 @@
                                    data-message="🌱【豆豆谷订购】你好！我想订购：薰衣草红豆奶昔 S$8.20。请问如何安排配送？谢谢！">
                                     📱 WhatsApp订购
                                 </a>
-                                <a href="weixin://dl/chat?{微信号}" 
+                                <a href="#" onclick="showWeChatInfo()" 
                                    class="order-btn wechat-btn">
                                     💬 微信订购
                                 </a>
@@ -198,6 +198,25 @@
             const selectedNumber = getRandomWhatsApp();
             const whatsappUrl = `https://wa.me/${selectedNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+        }
+
+        function showWeChatInfo() {
+            const message = `💬 微信咨询 - 豆豆谷
+
+请选择联系方式：
+
+📱 方式1: WhatsApp（推荐）
+• 点击任意产品的WhatsApp按钮
+• 即时响应，服务更快
+
+💬 方式2: 微信
+• 微信号：[即将开放]
+• 我们正在为您准备专用微信客服
+• 暂时可先使用WhatsApp
+
+感谢您的理解！🌱`;
+            
+            alert(message);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
