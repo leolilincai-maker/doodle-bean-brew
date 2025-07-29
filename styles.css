@@ -1,4 +1,4 @@
-/* 豆花饮品店 - 现代化样式 */
+/* 豆豆谷饮品店 - 现代化样式 */
 * {
     margin: 0;
     padding: 0;
@@ -41,22 +41,29 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
 }
 
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* 移除旧的logo样式 */
 .logo::before {
-    content: "🌸";
-    font-size: 2rem;
+    display: none;
 }
 
 .nav-links {
@@ -335,5 +342,9 @@ footer {
     .footer-content {
         flex-direction: column;
         text-align: center;
+    }
+
+    .logo img {
+        height: 40px;
     }
 } 
