@@ -149,38 +149,39 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">📱 联系订购 Contact & Order</h2>
+                <h2 class="section-title">📱 联系 Contact</h2>
                 
-                <!-- 免费配送说明 -->
+                <!-- 服务说明 -->
                 <div class="delivery-info" style="background: linear-gradient(135deg, #6B8E7B, #F4A261); color: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
-                    <h3 style="color: white; margin-bottom: 1rem;">🚚 免费配送服务 Free Delivery</h3>
+                    <h3 style="color: white; margin-bottom: 1rem;">💬 专业客服团队</h3>
                     <p style="font-size: 1.1rem; margin: 0;">
-                        <strong>配送范围</strong>：West Terra @ Bukit Batok (Block 447-453) & Le Quest公寓<br>
-                        <strong>配送费用</strong>：完全免费 ✨<br>
-                        <strong>配送时间</strong>：订购后30-60分钟内送达
+                        <strong>服务内容</strong>：产品咨询、定制需求、配送询问<br>
+                        <strong>服务时间</strong>：9:00 AM - 9:00 PM<br>
+                        <strong>服务承诺</strong>：专业回复，贴心服务
                     </p>
                 </div>
                 
                 <div class="cards-grid">
                     <div class="card">
                         <span class="card-icon">📱</span>
-                        <h3>WhatsApp 订购</h3>
-                        <p>新加坡个人定制服务<br>
+                        <h3>WhatsApp 咨询</h3>
+                        <p>新加坡本地专业服务<br>
                         <strong>WhatsApp:</strong> 智能分配到团队成员<br>
                         <strong>咨询时间:</strong> 随时留言，会及时回复<br>
-                        <em style="font-size: 0.9em; color: #666;">双人团队，真人服务每一位客户</em></p>
-                        <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp')" style="margin-top: 1rem;">
+                        <em style="font-size: 0.9em; color: #666;">双人团队，专业回答每一个问题</em></p>
+                        <button class="order-btn whatsapp-btn" onclick="sendGeneralWhatsAppInquiry()" style="margin-top: 1rem;">
                             💬 WhatsApp咨询
                         </button>
                     </div>
                     
                     <div class="card">
                         <span class="card-icon">💬</span>
-                        <h3>微信订购</h3>
+                        <h3>微信咨询</h3>
                         <p>华人群体专属服务<br>
                         <strong>微信号:</strong> 18565651233<br>
-                        <strong>服务时间:</strong> 9:00 AM - 9:00 PM</p>
-                        <button class="order-btn wechat-btn" onclick="startDeliveryVerification('wechat')" style="margin-top: 1rem;">
+                        <strong>服务时间:</strong> 9:00 AM - 9:00 PM<br>
+                        <em style="font-size: 0.9em; color: #666;">添加好友备注"豆豆谷咨询"</em></p>
+                        <button class="order-btn wechat-btn" onclick="showWeChatInfo()" style="margin-top: 1rem;">
                             💬 微信咨询
                         </button>
                     </div>
@@ -1131,6 +1132,22 @@
             if (modal) {
                 modal.remove();
             }
+        }
+        
+        // 发送通用WhatsApp咨询
+        function sendGeneralWhatsAppInquiry() {
+            const message = `🌱【豆豆谷咨询】你好！
+
+我想了解更多关于豆豆谷 Doodle Bean Brew 的信息：
+
+👉 产品详情和口味推荐
+👉 配送范围和时间
+👉 定制需求咨询
+👉 其他问题
+
+请问有什么可以帮到我的吗？谢谢！`;
+            
+            openWhatsAppChat(message);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
