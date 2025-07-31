@@ -870,17 +870,17 @@
                     
                     <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
                         <div style="font-weight: bold; margin-bottom: 0.5rem;">PayNow ID:</div>
-                        <div style="font-size: 1.1rem; font-weight: bold; color: #333; background: #e9ecef; padding: 0.5rem; border-radius: 5px;">
-                            +65 91012399
+                        <div style="font-size: 1.1rem; font-weight: bold; color: #666; background: #e9ecef; padding: 0.5rem; border-radius: 5px;">
+                            [待确认]
                         </div>
-                        <button onclick="copyPayNowID()" style="background: #007bff; color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; margin-top: 0.5rem; cursor: pointer; font-size: 0.9rem;">
-                            📋 复制PayNow ID
-                        </button>
+                        <div style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">
+                            💬 我们会在WhatsApp中提供具体的PayNow信息
+                        </div>
                     </div>
                     
                     <div style="background: white; padding: 1rem; border-radius: 8px;">
                         <div style="font-weight: bold; margin-bottom: 0.5rem;">收款人姓名:</div>
-                        <div style="font-size: 1rem; color: #333;">Leo Li (豆豆谷)</div>
+                        <div style="font-size: 1rem; color: #666;">[待确认]</div>
                     </div>
                 </div>
                 
@@ -889,15 +889,15 @@
                     <div style="font-size: 0.9rem; line-height: 1.6;">
                         1️⃣ 打开您的银行App (DBS/POSB/OCBC/UOB等)<br>
                         2️⃣ 选择 "PayNow" 或 "Transfer"<br>
-                        3️⃣ 输入PayNow ID: <strong>+65 91012399</strong><br>
+                        3️⃣ 我们会在WhatsApp中提供具体PayNow信息<br>
                         4️⃣ 输入金额: <strong>S$${totalAmount}</strong><br>
                         5️⃣ 在备注中写: <strong>豆豆谷订购</strong><br>
-                        6️⃣ 确认转账
+                        6️⃣ 确认转账并截图
                     </div>
                 </div>
                 
                 <div style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
-                    💡 转账完成后，请将截图发送至WhatsApp确认订单
+                    💡 点击下方按钮，我们会在WhatsApp中提供详细的PayNow信息
                 </div>
                 
                 <div style="display: flex; gap: 1rem; justify-content: center;">
@@ -1026,24 +1026,6 @@
             document.body.appendChild(modal);
         }
         
-        // 复制PayNow ID
-        function copyPayNowID() {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText('+65 91012399').then(() => {
-                    alert('✅ PayNow ID已复制到剪贴板：+65 91012399');
-                });
-            } else {
-                // 降级方案
-                const textArea = document.createElement('textarea');
-                textArea.value = '+65 91012399';
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('✅ PayNow ID已复制：+65 91012399');
-            }
-        }
-        
         // 发送PayNow订单到WhatsApp
         function sendPayNowOrderToWhatsApp() {
             let message;
@@ -1060,10 +1042,8 @@ ${currentPaymentData.orderItems}
 
 💳 支付方式：PayNow
 💰 支付金额：S$${currentPaymentData.totalPrice.toFixed(2)}
-🏦 PayNow ID: +65 91012399
-👤 收款人：Leo Li (豆豆谷)
 
-我将通过PayNow转账后截图确认。谢谢！`;
+请提供PayNow转账信息，我完成转账后会截图确认。谢谢！`;
             } else {
                 message = `🌱【豆豆谷订购】你好！我想订购：${currentPaymentData.productName} ${currentPaymentData.productPrice}
 
@@ -1072,10 +1052,8 @@ ${currentPaymentData.orderItems}
 
 💳 支付方式：PayNow
 💰 支付金额：S$${currentPaymentData.productPrice}
-🏦 PayNow ID: +65 91012399
-👤 收款人：Leo Li (豆豆谷)
 
-我将通过PayNow转账后截图确认。谢谢！`;
+请提供PayNow转账信息，我完成转账后会截图确认。谢谢！`;
             }
             
             openWhatsAppChat(message);
