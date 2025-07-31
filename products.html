@@ -243,6 +243,9 @@
         // 购物车数据
         let cart = JSON.parse(localStorage.getItem('doodleCart')) || [];
         
+        // 当前订单数据（用于地址验证）
+        let currentOrderData = null;
+        
         // 初始化购物车显示
         function initCart() {
             updateCartDisplay();
@@ -490,6 +493,7 @@
         
         // 购物车地址验证
         function startCartDeliveryVerification(orderItems, totalPrice, totalQuantity) {
+            currentOrderData = { orderItems, totalPrice, totalQuantity };
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -571,7 +575,7 @@
                 </div>
                 
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <button onclick="processCartOrder('${orderItems.replace(/'/g, "\\'")}', ${totalPrice}, ${totalQuantity})" 
+                    <button onclick="processCartOrder(currentOrderData)" 
                             style="background: #6B8E7B; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
                         📱 确认订购
                     </button>
@@ -605,7 +609,7 @@
         }
         
         // 处理购物车订单
-        function processCartOrder(orderItems, totalPrice, totalQuantity) {
+        function processCartOrder(orderData) {
             const addressSelect = document.getElementById('cartAddressSelect');
             const selectedAddress = addressSelect.value;
             const selectedText = addressSelect.options[addressSelect.selectedIndex].text;
@@ -626,9 +630,9 @@
             const message = `🌱【豆豆谷批量订购】你好！我想订购以下商品：
 
 📋 订单详情：
-${orderItems}
+${orderData.orderItems}
 
-💰 订单总计：${totalQuantity}件商品，S$${totalPrice.toFixed(2)}
+💰 订单总计：${orderData.totalQuantity}件商品，S$${orderData.totalPrice.toFixed(2)}
 
 📍 配送地址：${selectedText}
 🚚 免费配送服务
