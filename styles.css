@@ -767,3 +767,68 @@ footer {
         min-width: auto;
     }
 } 
+
+/* 招牌产品特殊样式 */
+.product-card.featured {
+    position: relative;
+    border: 2px solid var(--secondary-color);
+    background: linear-gradient(135deg, #fff 0%, #fff9f5 100%);
+    box-shadow: 0 8px 30px rgba(244, 162, 97, 0.3);
+}
+
+.product-badge {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(244, 162, 97, 0.4);
+    z-index: 2;
+}
+
+.product-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.product-highlights .highlight {
+    background: linear-gradient(135deg, var(--primary-color), #8fa88f);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.product-card.featured .product-name {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.product-card.featured:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(244, 162, 97, 0.4);
+}
+
+@media (max-width: 768px) {
+    .product-badge {
+        top: -8px;
+        right: 10px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .product-highlights .highlight {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.6rem;
+    }
+} 

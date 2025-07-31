@@ -33,10 +33,45 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">🔥 热饮系列</h2>
+                <h2 class="section-title">🔥 热饮系列 Hot Drinks</h2>
                 <div class="product-grid">
+                    <!-- 招牌产品：红粉豆语 -->
+                    <div class="product-card featured">
+                        <div class="product-badge">🏆 招牌推荐</div>
+                        <div class="product-image">🌹</div>
+                        <div class="product-info">
+                            <h3 class="product-name">红粉豆语 Signature Blend</h3>
+                            <p class="product-description">豆豆谷招牌之作！精选黄豆与红豆黄金比例调配，融入天然玫瑰花瓣。富含植物蛋白与膳食纤维，每一口都是丝绸般的温暖呵护，带来日常元气与轻盈注入。</p>
+                            <div class="product-highlights">
+                                <span class="highlight">🌟 招牌特调</span>
+                                <span class="highlight">🌹 玫瑰花瓣</span>
+                                <span class="highlight">💖 美颜功效</span>
+                            </div>
+                            <div class="product-price">S$7.80</div>
+                            
+                            <!-- 数量选择 -->
+                            <div class="quantity-selector">
+                                <label for="signatureQuantity">数量:</label>
+                                <div class="quantity-controls">
+                                    <button type="button" onclick="changeQuantity('signatureQuantity', -1)">-</button>
+                                    <input type="number" id="signatureQuantity" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('signatureQuantity', 1)">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="order-buttons">
+                                <button class="order-btn cart-btn" onclick="addToCart('红粉豆语 Signature Blend', 'S$7.80', '🌹', 'signatureQuantity')">
+                                    🛒 加入购物车
+                                </button>
+                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '红粉豆语 Signature Blend', 'S$7.80')">
+                                    📱 立即订购
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="product-card">
-                        <div class="product-image">🌻</div>
+                        <div class="product-image">🌼</div>
                         <div class="product-info">
                             <h3 class="product-name">桂花黄豆奶茶</h3>
                             <p class="product-description">精选优质黄豆，配以浓郁豆香与桂花清香，口感层次丰富。富含植物蛋白，美容养颜。</p>
