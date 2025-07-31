@@ -33,92 +33,53 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">🏪 店铺信息</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <span class="card-icon">📍</span>
-                        <h3>总店地址</h3>
-                        <p>上海市静安区南京西路123号<br>
-                        环贸广场1楼A01店铺<br>
-                        (地铁2、7号线静安寺站3号出口步行3分钟)</p>
-                    </div>
-                    
-                    <div class="card">
-                        <span class="card-icon">⏰</span>
-                        <h3>营业时间</h3>
-                        <p><strong>周一至周日：</strong>08:00 - 22:00<br>
-                        <strong>节假日：</strong>09:00 - 23:00<br>
-                        <strong>外卖服务：</strong>24小时</p>
-                    </div>
-                    
-                    <div class="card">
-                        <span class="card-icon">📞</span>
-                        <h3>联系电话</h3>
-                        <p><strong>店铺热线：</strong>021-6234-5678<br>
-                        <strong>外卖专线：</strong>021-6234-5679<br>
-                        <strong>客服热线：</strong>400-888-9999</p>
-                    </div>
+                <h2 class="section-title">📱 联系我们 Contact Us</h2>
+                
+                <!-- 服务说明 -->
+                <div class="delivery-info" style="background: linear-gradient(135deg, #6B8E7B, #F4A261); color: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
+                    <h3 style="color: white; margin-bottom: 1rem;">💬 专业客服团队</h3>
+                    <p style="font-size: 1.1rem; margin: 0;">
+                        <strong>服务内容</strong>：产品咨询、定制需求、配送询问<br>
+                        <strong>服务时间</strong>：9:00 AM - 9:00 PM<br>
+                        <strong>服务承诺</strong>：专业回复，贴心服务
+                    </p>
                 </div>
-            </div>
-        </section>
-
-        <section class="section bg-pattern">
-            <div class="container">
-                <h2 class="section-title">🌟 分店信息</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <span class="card-icon">🏢</span>
-                        <h3>淮海中路店</h3>
-                        <p><strong>地址：</strong>淮海中路456号K11购物中心B1层<br>
-                        <strong>电话：</strong>021-5432-1098<br>
-                        <strong>特色：</strong>商务区首选，提供商务套餐</p>
-                    </div>
-                    
-                    <div class="card">
-                        <span class="card-icon">🎓</span>
-                        <h3>复旦大学店</h3>
-                        <p><strong>地址：</strong>杨浦区邯郸路220号复旦大学南区食堂<br>
-                        <strong>电话：</strong>021-6549-8765<br>
-                        <strong>特色：</strong>学生专享价，健康营养搭配</p>
-                    </div>
-                    
-                    <div class="card">
-                        <span class="card-icon">🏠</span>
-                        <h3>陆家嘴店</h3>
-                        <p><strong>地址：</strong>浦东新区世纪大道100号环球金融中心1楼<br>
-                        <strong>电话：</strong>021-5876-4321<br>
-                        <strong>特色：</strong>金融区便民，快速取餐服务</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">💬 在线服务</h2>
+                
                 <div class="cards-grid">
                     <div class="card">
                         <span class="card-icon">📱</span>
-                        <h3>微信客服</h3>
-                        <p>扫描二维码添加微信客服<br>
-                        <strong>微信号：</strong>18565651233<br>
-                        <strong>服务时间：</strong>8:00-24:00</p>
+                        <h3>WhatsApp 咨询</h3>
+                        <p>新加坡本地专业服务<br>
+                        <strong>WhatsApp:</strong> 智能分配到团队成员<br>
+                        <strong>咨询时间:</strong> 随时留言，会及时回复<br>
+                        <em style="font-size: 0.9em; color: #666;">双人团队，专业回答每一个问题</em></p>
+                        <button class="order-btn whatsapp-btn" onclick="sendGeneralWhatsAppInquiry()" style="margin-top: 1rem;">
+                            💬 WhatsApp咨询
+                        </button>
                     </div>
                     
                     <div class="card">
-                        <span class="card-icon">🤖</span>
-                        <h3>智能客服</h3>
-                        <p>24小时在线智能客服<br>
-                        快速解答常见问题<br>
-                        <strong>响应时间：</strong>即时回复</p>
+                        <span class="card-icon">💬</span>
+                        <h3>微信咨询</h3>
+                        <p>华人群体专属服务<br>
+                        <strong>微信号:</strong> 18565651233<br>
+                        <strong>服务时间:</strong> 9:00 AM - 9:00 PM<br>
+                        <em style="font-size: 0.9em; color: #666;">添加好友备注"豆豆谷咨询"</em></p>
+                        <button class="order-btn wechat-btn" onclick="showWeChatInfo()" style="margin-top: 1rem;">
+                            💬 微信咨询
+                        </button>
                     </div>
                     
                     <div class="card">
                         <span class="card-icon">📧</span>
                         <h3>邮件咨询</h3>
                         <p>发送详细咨询邮件<br>
-                        <strong>邮箱：</strong>service@doodlebeanbrew.com<br>
-                        <strong>回复时间：</strong>24小时内</p>
+                        <strong>邮箱:</strong> service@doodlebeanbrew.com<br>
+                        <strong>回复时间:</strong> 24小时内<br>
+                        <em style="font-size: 0.9em; color: #666;">适合详细需求咨询</em></p>
+                        <a href="mailto:service@doodlebeanbrew.com" class="order-btn" style="margin-top: 1rem; display: inline-block; text-decoration: none;">
+                            📧 发送邮件
+                        </a>
                     </div>
                 </div>
             </div>
@@ -126,14 +87,14 @@
 
         <section class="section bg-pattern">
             <div class="container">
-                <h2 class="section-title">📱 关注我们</h2>
+                <h2 class="section-title">📱 关注我们 Follow Us</h2>
                 <div class="cards-grid">
                     <div class="card">
                         <span class="card-icon">📱</span>
                         <h3>微信公众号</h3>
-                        <p>关注"豆豆谷"公众号<br>
-                        获取最新产品信息和优惠活动<br>
-                        <strong>微信号：</strong>18565651233</p>
+                        <p>关注"豆豆谷"获取最新产品信息<br>
+                        和专属优惠活动<br>
+                        <strong>微信号:</strong> doodle-bean-brew</p>
                     </div>
                     
                     <div class="card">
@@ -141,7 +102,7 @@
                         <h3>小红书</h3>
                         <p>小红书搜索"豆豆谷"<br>
                         分享美食制作过程和搭配技巧<br>
-                        <strong>账号：</strong>@豆豆谷官方</p>
+                        <strong>账号:</strong> @豆豆谷官方</p>
                     </div>
                     
                     <div class="card">
@@ -149,7 +110,7 @@
                         <h3>抖音</h3>
                         <p>抖音关注"豆豆谷"<br>
                         观看有趣的制作视频和挑战<br>
-                        <strong>抖音号：</strong>doodle_bean_brew</p>
+                        <strong>抖音号:</strong> doodle_bean_brew</p>
                     </div>
                 </div>
             </div>
@@ -173,6 +134,156 @@
     </footer>
 
     <script>
+        // WhatsApp随机分配系统
+        const whatsappNumbers = [
+            '6591012399',  // 用户本人
+            '6583009375'   // 合伙人
+        ];
+
+        function getRandomWhatsApp() {
+            const randomIndex = Math.floor(Math.random() * whatsappNumbers.length);
+            return whatsappNumbers[randomIndex];
+        }
+
+        function openWhatsAppChat(message) {
+            const phoneNumber = getRandomWhatsApp();
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // 发送通用WhatsApp咨询
+        function sendGeneralWhatsAppInquiry() {
+            const message = `🌱【豆豆谷咨询】你好！
+
+我想了解更多关于豆豆谷 Doodle Bean Brew 的信息：
+
+👉 产品详情和口味推荐
+👉 配送范围和时间
+👉 定制需求咨询
+👉 其他问题
+
+请问有什么可以帮到我的吗？谢谢！`;
+            
+            openWhatsAppChat(message);
+        }
+
+        function showWeChatInfo() {
+            // 创建一个更美观的弹窗
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(5px);
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                max-width: 400px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                position: relative;
+            `;
+            
+            content.innerHTML = `
+                <h3 style="color: #6B8E7B; margin-bottom: 1rem;">💬 微信咨询</h3>
+                
+                <!-- 免费配送信息横幅 -->
+                <div style="background: linear-gradient(135deg, #6B8E7B, #F4A261); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: center;">
+                    <div style="font-size: 0.9rem; line-height: 1.4;">
+                        🚚 <strong>免费配送范围</strong><br>
+                        West Terra @ Bukit Batok (Block 447-453)<br>
+                        Le Quest公寓 (Bukit Batok West Avenue 6)
+                    </div>
+                </div>
+                
+                <div style="margin: 1.5rem 0;">
+                    <img src="images/wechat-qr.jpg" 
+                         style="width: 200px; height: 200px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
+                         onerror="this.style.display='none'; document.getElementById('qr-error').style.display='block';">
+                    
+                    <div id="qr-error" style="display: none; padding: 2rem; background: #f0f0f0; border-radius: 10px;">
+                        <p style="color: #666; margin: 0;">📱 二维码加载中...</p>
+                    </div>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+                    <p style="margin: 0; font-size: 0.9rem; color: #666; line-height: 1.4;">
+                        <strong style="color: #333;">微信号:</strong> 18565651233
+                    </p>
+                </div>
+                
+                <button onclick="copyWeChatNumber()" style="background: #07C160; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; margin: 0.5rem; cursor: pointer; font-weight: bold;">
+                    📋 复制微信号
+                </button>
+                
+                <div style="margin-top: 1.5rem; font-size: 0.8rem; color: #666; line-height: 1.4;">
+                    <p style="margin: 0.5rem 0;"><strong>🕘 服务时间:</strong> 9:00 AM - 9:00 PM</p>
+                    <p style="margin: 0.5rem 0;"><strong>📝 添加备注:</strong> 豆豆谷咨询</p>
+                    <p style="margin: 0.5rem 0;"><strong>⚡ 回复时间:</strong> 通常30分钟内</p>
+                </div>
+                
+                <button onclick="closeWeChatModal()" style="
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #999;
+                ">✕</button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // 点击背景关闭
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeWeChatModal();
+                }
+            });
+        }
+
+        // 复制微信号
+        function copyWeChatNumber() {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText('18565651233').then(() => {
+                    alert('✅ 微信号已复制到剪贴板：18565651233');
+                });
+            } else {
+                // 降级方案
+                const textArea = document.createElement('textarea');
+                textArea.value = '18565651233';
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('✅ 微信号已复制：18565651233');
+            }
+        }
+
+        // 关闭微信模态框
+        function closeWeChatModal() {
+            const modal = document.querySelector('div[style*="position: fixed"][style*="z-index: 10000"]');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
