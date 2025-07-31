@@ -626,33 +626,515 @@
             
             closeCartAddressModal();
             
-            // 生成WhatsApp订购消息
-            const message = `🌱【豆豆谷批量订购】你好！我想订购以下商品：
+            // 创建完整订单数据并跳转到支付选择
+            const completeOrderData = {
+                platform: 'whatsapp', // 购物车默认WhatsApp
+                orderItems: orderData.orderItems,
+                totalPrice: orderData.totalPrice,
+                totalQuantity: orderData.totalQuantity,
+                address: selectedText,
+                isCart: true
+            };
+            
+            showPaymentSelection(completeOrderData);
+        }
+        
+        // 关闭购物车地址验证模态框
+        function closeCartAddressModal() {
+            const modal = document.querySelector('div[style*="position: fixed"][style*="z-index: 10000"]');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        // ==================== 支付方式选择系统 ====================
+        
+        // 显示支付方式选择
+        function showPaymentSelection(orderData) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(5px);
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                max-width: 500px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                position: relative;
+                max-height: 80vh;
+                overflow-y: auto;
+            `;
+            
+            // 生成订单摘要
+            let orderSummary = '';
+            if (orderData.isCart) {
+                orderSummary = `
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: left;">
+                        <h4 style="color: #333; margin-bottom: 0.5rem;">📋 订单详情：</h4>
+                        <div style="font-size: 0.9rem; line-height: 1.6;">
+                            ${orderData.orderItems.replace(/\n/g, '<br>')}
+                        </div>
+                        <hr style="margin: 1rem 0; border: none; border-top: 1px solid #ddd;">
+                        <div style="font-weight: bold; color: var(--accent-color);">
+                            💰 总计：${orderData.totalQuantity}件商品，S$${orderData.totalPrice.toFixed(2)}
+                        </div>
+                    </div>
+                `;
+            } else {
+                orderSummary = `
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <h4 style="color: #333; margin-bottom: 0.5rem;">📋 订单详情：</h4>
+                        <div style="font-weight: bold; color: var(--accent-color);">
+                            ${orderData.productName} - ${orderData.productPrice}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            content.innerHTML = `
+                <h3 style="color: #6B8E7B; margin-bottom: 1rem;">💳 选择支付方式</h3>
+                
+                ${orderSummary}
+                
+                <div style="background: #e8f5e8; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: left;">
+                    <div style="color: #6B8E7B; font-weight: bold; margin-bottom: 0.5rem;">
+                        📍 配送地址：${orderData.address}
+                    </div>
+                    <div style="color: #E76F51; font-size: 0.9rem;">
+                        🚚 免费配送 | ⏰ 30-60分钟送达
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="color: #333; margin-bottom: 1rem;">请选择支付方式：</h4>
+                    
+                    <div style="display: grid; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="payment-option" data-payment="paynow" style="border: 2px solid #ddd; border-radius: 10px; padding: 1rem; cursor: pointer; transition: all 0.3s ease;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.5rem;">🏦</span>
+                                <div style="text-align: left; flex: 1;">
+                                    <div style="font-weight: bold; color: #333;">PayNow</div>
+                                    <div style="font-size: 0.9rem; color: #666;">新加坡本地即时转账</div>
+                                </div>
+                                <div style="color: #28a745; font-weight: bold;">推荐</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment="wechat" style="border: 2px solid #ddd; border-radius: 10px; padding: 1rem; cursor: pointer; transition: all 0.3s ease;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.5rem;">💬</span>
+                                <div style="text-align: left; flex: 1;">
+                                    <div style="font-weight: bold; color: #333;">微信支付</div>
+                                    <div style="font-size: 0.9rem; color: #666;">WeChat Pay 扫码支付</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="font-size: 0.9rem; color: #666; text-align: left;">
+                        💡 <strong>支付说明：</strong><br>
+                        • 选择支付方式后，我们会提供详细的支付信息<br>
+                        • 确认收到您的支付后，立即安排配送<br>
+                        • 如有疑问，欢迎WhatsApp联系我们
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+                    <button id="confirmPaymentBtn" disabled style="background: #6B8E7B; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold; opacity: 0.5;">
+                        确认支付方式
+                    </button>
+                    <button onclick="closePaymentModal()" style="background: #ccc; color: #333; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer;">
+                        返回修改
+                    </button>
+                </div>
+                
+                <button onclick="closePaymentModal()" style="
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #999;
+                ">✕</button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // 添加支付方式选择交互
+            let selectedPayment = null;
+            const paymentOptions = content.querySelectorAll('.payment-option');
+            const confirmBtn = content.querySelector('#confirmPaymentBtn');
+            
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // 移除所有选中状态
+                    paymentOptions.forEach(opt => {
+                        opt.style.borderColor = '#ddd';
+                        opt.style.backgroundColor = 'white';
+                    });
+                    
+                    // 设置当前选中
+                    this.style.borderColor = '#6B8E7B';
+                    this.style.backgroundColor = '#f0f8f0';
+                    
+                    selectedPayment = this.getAttribute('data-payment');
+                    
+                    // 启用确认按钮
+                    confirmBtn.disabled = false;
+                    confirmBtn.style.opacity = '1';
+                    confirmBtn.style.cursor = 'pointer';
+                });
+            });
+            
+            // 确认按钮事件
+            confirmBtn.addEventListener('click', function() {
+                if (selectedPayment) {
+                    closePaymentModal();
+                    processPayment(orderData, selectedPayment);
+                }
+            });
+            
+            // 点击背景关闭
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closePaymentModal();
+                }
+            });
+        }
+        
+        // 处理支付方式选择
+        function processPayment(orderData, paymentMethod) {
+            if (paymentMethod === 'paynow') {
+                showPayNowDetails(orderData);
+            } else if (paymentMethod === 'wechat') {
+                showWeChatPayDetails(orderData);
+            }
+        }
+        
+        // 显示PayNow支付详情
+        function showPayNowDetails(orderData) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(5px);
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                max-width: 450px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                position: relative;
+            `;
+            
+            const totalAmount = orderData.isCart ? orderData.totalPrice.toFixed(2) : parseFloat(orderData.productPrice.replace('S$', '')).toFixed(2);
+            
+            content.innerHTML = `
+                <h3 style="color: #6B8E7B; margin-bottom: 1rem;">🏦 PayNow 支付详情</h3>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #E76F51; margin-bottom: 1rem;">
+                        支付金额：S$${totalAmount}
+                    </div>
+                    
+                    <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="font-weight: bold; margin-bottom: 0.5rem;">PayNow ID:</div>
+                        <div style="font-size: 1.1rem; font-weight: bold; color: #333; background: #e9ecef; padding: 0.5rem; border-radius: 5px;">
+                            +65 91012399
+                        </div>
+                        <button onclick="copyPayNowID()" style="background: #007bff; color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; margin-top: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                            📋 复制PayNow ID
+                        </button>
+                    </div>
+                    
+                    <div style="background: white; padding: 1rem; border-radius: 8px;">
+                        <div style="font-weight: bold; margin-bottom: 0.5rem;">收款人姓名:</div>
+                        <div style="font-size: 1rem; color: #333;">Leo Li (豆豆谷)</div>
+                    </div>
+                </div>
+                
+                <div style="background: #e8f5e8; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: left;">
+                    <h4 style="color: #6B8E7B; margin-bottom: 0.5rem;">📱 PayNow转账步骤：</h4>
+                    <div style="font-size: 0.9rem; line-height: 1.6;">
+                        1️⃣ 打开您的银行App (DBS/POSB/OCBC/UOB等)<br>
+                        2️⃣ 选择 "PayNow" 或 "Transfer"<br>
+                        3️⃣ 输入PayNow ID: <strong>+65 91012399</strong><br>
+                        4️⃣ 输入金额: <strong>S$${totalAmount}</strong><br>
+                        5️⃣ 在备注中写: <strong>豆豆谷订购</strong><br>
+                        6️⃣ 确认转账
+                    </div>
+                </div>
+                
+                <div style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
+                    💡 转账完成后，请将截图发送至WhatsApp确认订单
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button onclick="sendPayNowOrderToWhatsApp(JSON.parse('${JSON.stringify(orderData).replace(/'/g, "\\'")}'))" style="background: #25D366; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
+                        📱 发送订单到WhatsApp
+                    </button>
+                    <button onclick="closePaymentModal()" style="background: #ccc; color: #333; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer;">
+                        关闭
+                    </button>
+                </div>
+                
+                <button onclick="closePaymentModal()" style="
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #999;
+                ">✕</button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+        }
+        
+        // 显示微信支付详情
+        function showWeChatPayDetails(orderData) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(5px);
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                max-width: 450px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                position: relative;
+            `;
+            
+            const totalAmount = orderData.isCart ? orderData.totalPrice.toFixed(2) : parseFloat(orderData.productPrice.replace('S$', '')).toFixed(2);
+            
+            content.innerHTML = `
+                <h3 style="color: #6B8E7B; margin-bottom: 1rem;">💬 微信支付详情</h3>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #E76F51; margin-bottom: 1rem;">
+                        支付金额：S$${totalAmount}
+                    </div>
+                    
+                    <div style="margin: 1.5rem 0;">
+                        <img src="images/wechat-qr.jpg" 
+                             style="width: 180px; height: 180px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
+                             onerror="this.style.display='none'; document.getElementById('wechat-pay-error').style.display='block';">
+                        
+                        <div id="wechat-pay-error" style="display: none; padding: 2rem; background: #f0f0f0; border-radius: 10px;">
+                            <p style="color: #666; margin: 0;">📱 微信支付二维码加载中...</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 1rem; border-radius: 8px;">
+                        <div style="font-weight: bold; margin-bottom: 0.5rem;">微信号:</div>
+                        <div style="font-size: 1.1rem; font-weight: bold; color: #333;">18565651233</div>
+                        <button onclick="copyWeChatNumber()" style="background: #07C160; color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; margin-top: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                            📋 复制微信号
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="background: #e8f5e8; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: left;">
+                    <h4 style="color: #6B8E7B; margin-bottom: 0.5rem;">📱 微信支付步骤：</h4>
+                    <div style="font-size: 0.9rem; line-height: 1.6;">
+                        1️⃣ 扫描上方二维码添加微信好友<br>
+                        2️⃣ 备注：<strong>豆豆谷支付</strong><br>
+                        3️⃣ 通过微信转账: <strong>S$${totalAmount}</strong><br>
+                        4️⃣ 或直接使用微信收款码支付<br>
+                        5️⃣ 截图发送确认
+                    </div>
+                </div>
+                
+                <div style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
+                    💡 支付完成后，请将截图发送至WhatsApp确认订单
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button onclick="sendWeChatOrderToWhatsApp(JSON.parse('${JSON.stringify(orderData).replace(/'/g, "\\'")}'))" style="background: #25D366; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
+                        📱 发送订单到WhatsApp
+                    </button>
+                    <button onclick="closePaymentModal()" style="background: #ccc; color: #333; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer;">
+                        关闭
+                    </button>
+                </div>
+                
+                <button onclick="closePaymentModal()" style="
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #999;
+                ">✕</button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+        }
+        
+        // 复制PayNow ID
+        function copyPayNowID() {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText('+65 91012399').then(() => {
+                    alert('✅ PayNow ID已复制到剪贴板：+65 91012399');
+                });
+            } else {
+                // 降级方案
+                const textArea = document.createElement('textarea');
+                textArea.value = '+65 91012399';
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('✅ PayNow ID已复制：+65 91012399');
+            }
+        }
+        
+        // 发送PayNow订单到WhatsApp
+        function sendPayNowOrderToWhatsApp(orderData) {
+            let message;
+            
+            if (orderData.isCart) {
+                message = `🌱【豆豆谷批量订购】你好！我想订购以下商品：
 
 📋 订单详情：
 ${orderData.orderItems}
 
 💰 订单总计：${orderData.totalQuantity}件商品，S$${orderData.totalPrice.toFixed(2)}
-
-📍 配送地址：${selectedText}
+📍 配送地址：${orderData.address}
 🚚 免费配送服务
 
-请问什么时候可以安排配送？谢谢！`;
+💳 支付方式：PayNow
+💰 支付金额：S$${orderData.totalPrice.toFixed(2)}
+🏦 PayNow ID: +65 91012399
+👤 收款人：Leo Li (豆豆谷)
+
+我将通过PayNow转账后截图确认。谢谢！`;
+            } else {
+                message = `🌱【豆豆谷订购】你好！我想订购：${orderData.productName} ${orderData.productPrice}
+
+📍 配送地址：${orderData.address}
+🚚 免费配送服务
+
+💳 支付方式：PayNow
+💰 支付金额：S$${orderData.productPrice}
+🏦 PayNow ID: +65 91012399
+👤 收款人：Leo Li (豆豆谷)
+
+我将通过PayNow转账后截图确认。谢谢！`;
+            }
             
-            // 发送到WhatsApp
             openWhatsAppChat(message);
             
-            // 清空购物车
-            cart = [];
-            localStorage.setItem('doodleCart', JSON.stringify(cart));
-            updateCartDisplay();
+            // 如果是购物车订购，清空购物车
+            if (orderData.isCart) {
+                cart = [];
+                localStorage.setItem('doodleCart', JSON.stringify(cart));
+                updateCartDisplay();
+            }
             
-            // 显示订单提交成功提示
+            closePaymentModal();
             showOrderSuccess();
         }
         
-        // 关闭购物车地址验证模态框
-        function closeCartAddressModal() {
+        // 发送微信支付订单到WhatsApp
+        function sendWeChatOrderToWhatsApp(orderData) {
+            let message;
+            
+            if (orderData.isCart) {
+                message = `🌱【豆豆谷批量订购】你好！我想订购以下商品：
+
+📋 订单详情：
+${orderData.orderItems}
+
+💰 订单总计：${orderData.totalQuantity}件商品，S$${orderData.totalPrice.toFixed(2)}
+📍 配送地址：${orderData.address}
+🚚 免费配送服务
+
+💳 支付方式：微信支付
+💰 支付金额：S$${orderData.totalPrice.toFixed(2)}
+💬 微信号：18565651233
+
+我将通过微信转账后截图确认。谢谢！`;
+            } else {
+                message = `🌱【豆豆谷订购】你好！我想订购：${orderData.productName} ${orderData.productPrice}
+
+📍 配送地址：${orderData.address}
+🚚 免费配送服务
+
+💳 支付方式：微信支付
+💰 支付金额：S$${orderData.productPrice}
+💬 微信号：18565651233
+
+我将通过微信转账后截图确认。谢谢！`;
+            }
+            
+            openWhatsAppChat(message);
+            
+            // 如果是购物车订购，清空购物车
+            if (orderData.isCart) {
+                cart = [];
+                localStorage.setItem('doodleCart', JSON.stringify(cart));
+                updateCartDisplay();
+            }
+            
+            closePaymentModal();
+            showOrderSuccess();
+        }
+        
+        // 关闭支付模态框
+        function closePaymentModal() {
             const modal = document.querySelector('div[style*="position: fixed"][style*="z-index: 10000"]');
             if (modal) {
                 modal.remove();
@@ -680,7 +1162,7 @@ ${orderData.orderItems}
             toast.innerHTML = `
                 <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
                 <h3 style="margin-bottom: 1rem;">订单提交成功！</h3>
-                <p style="margin: 0; opacity: 0.9;">您的订单已发送到WhatsApp<br>我们会尽快与您确认配送时间</p>
+                <p style="margin: 0; opacity: 0.9;">您的订单已发送到WhatsApp<br>请完成支付后截图确认</p>
             `;
             
             document.body.appendChild(toast);
@@ -846,28 +1328,16 @@ ${orderData.orderItems}
             
             closeAddressModal();
             
-            // 根据平台执行不同操作
-            if (platform === 'whatsapp') {
-                let message;
-                if (productName && productPrice) {
-                    message = `🌱【豆豆谷订购】你好！我想订购：${productName} ${productPrice}
-
-📍 配送地址：${selectedText}
-🚚 免费配送服务
-
-请问什么时候可以安排配送？谢谢！`;
-                } else {
-                    message = `🌱【豆豆谷咨询】Hi! 我从官网看到豆豆谷 Doodle Bean Brew，想了解一下产品和订购方式。
-
-📍 我的地址：${selectedText}
-🚚 了解到您提供免费配送服务
-
-谢谢！`;
-                }
-                openWhatsAppChat(message);
-            } else if (platform === 'wechat') {
-                showWeChatInfo();
-            }
+            // 创建订单数据并跳转到支付选择
+            const orderData = {
+                platform: platform,
+                productName: productName,
+                productPrice: productPrice,
+                address: selectedText,
+                isCart: false
+            };
+            
+            showPaymentSelection(orderData);
         }
 
         // 关闭地址验证模态框
