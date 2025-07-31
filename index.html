@@ -249,11 +249,10 @@
     <script>
         // ==================== 购物车系统 ====================
         
-        // 购物车数据
+        // 全局变量
         let cart = JSON.parse(localStorage.getItem('doodleCart')) || [];
-        
-        // 当前订单数据（用于地址验证）
-        let currentOrderData = null;
+        let currentOrderData = null; // 购物车订单数据
+        let currentPaymentData = null; // 当前支付订单数据
         
         // 初始化购物车显示
         function initCart() {
@@ -716,6 +715,9 @@
         
         // 显示PayNow支付详情
         function showPayNowDetails(orderData) {
+            // 存储订单数据到全局变量
+            currentPaymentData = orderData;
+            
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -786,7 +788,7 @@
                 </div>
                 
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <button onclick="sendPayNowOrderToWhatsApp(JSON.parse('${JSON.stringify(orderData).replace(/'/g, "\\'")}'))" style="background: #25D366; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
+                    <button onclick="sendPayNowOrderToWhatsApp()" style="background: #25D366; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
                         📱 发送订单到WhatsApp
                     </button>
                     <button onclick="closePaymentModal()" style="background: #ccc; color: #333; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer;">
@@ -812,6 +814,9 @@
         
         // 显示微信支付详情
         function showWeChatPayDetails(orderData) {
+            // 存储订单数据到全局变量
+            currentPaymentData = orderData;
+            
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -884,7 +889,7 @@
                 </div>
                 
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <button onclick="sendWeChatOrderToWhatsApp(JSON.parse('${JSON.stringify(orderData).replace(/'/g, "\\'")}'))" style="background: #25D366; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
+                    <button onclick="sendWeChatOrderToWhatsApp()" style="background: #25D366; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
                         📱 发送订单到WhatsApp
                     </button>
                     <button onclick="closePaymentModal()" style="background: #ccc; color: #333; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer;">
@@ -927,14 +932,19 @@
         }
         
         // 发送PayNow订单到WhatsApp
-        function sendPayNowOrderToWhatsApp(orderData) {
-            const message = `🌱【豆豆谷订购】你好！我想订购：${orderData.productName} ${orderData.productPrice}
+        function sendPayNowOrderToWhatsApp() {
+            if (!currentPaymentData) {
+                alert('订单数据未准备好，请先选择支付方式。');
+                return;
+            }
 
-📍 配送地址：${orderData.address}
+            const message = `🌱【豆豆谷订购】你好！我想订购：${currentPaymentData.productName} ${currentPaymentData.productPrice}
+
+📍 配送地址：${currentPaymentData.address}
 🚚 免费配送服务
 
 💳 支付方式：PayNow
-💰 支付金额：${orderData.productPrice}
+💰 支付金额：${currentPaymentData.productPrice}
 🏦 PayNow ID: +65 91012399
 👤 收款人：Leo Li (豆豆谷)
 
@@ -946,14 +956,19 @@
         }
         
         // 发送微信支付订单到WhatsApp
-        function sendWeChatOrderToWhatsApp(orderData) {
-            const message = `🌱【豆豆谷订购】你好！我想订购：${orderData.productName} ${orderData.productPrice}
+        function sendWeChatOrderToWhatsApp() {
+            if (!currentPaymentData) {
+                alert('订单数据未准备好，请先选择支付方式。');
+                return;
+            }
 
-📍 配送地址：${orderData.address}
+            const message = `🌱【豆豆谷订购】你好！我想订购：${currentPaymentData.productName} ${currentPaymentData.productPrice}
+
+📍 配送地址：${currentPaymentData.address}
 🚚 免费配送服务
 
 💳 支付方式：微信支付
-💰 支付金额：${orderData.productPrice}
+💰 支付金额：${currentPaymentData.productPrice}
 💬 微信号：18565651233
 
 我将通过微信转账后截图确认。谢谢！`;
