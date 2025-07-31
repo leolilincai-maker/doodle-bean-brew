@@ -839,18 +839,18 @@ footer {
     height: 220px;
     object-fit: contain;
     object-position: center;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
     transition: all 0.3s ease;
-    padding: 15px;
-    background-color: #fafafa;
+    padding: 12px;
+    background: radial-gradient(ellipse at center, #ffffff 0%, #f8f6f3 70%, #f0ede8 100%);
 }
 
 .product-card.featured .product-photo {
     border: 3px solid transparent;
-    background: linear-gradient(#fafafa, #fafafa) padding-box,
+    background: radial-gradient(ellipse at center, #ffffff 0%, #f8f6f3 70%, #f0ede8 100%) padding-box,
                 linear-gradient(135deg, var(--secondary-color), var(--accent-color)) border-box;
-    box-shadow: 0 12px 35px rgba(244, 162, 97, 0.3);
+    box-shadow: 0 12px 35px rgba(244, 162, 97, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .product-card.featured:hover .product-photo {
@@ -868,7 +868,8 @@ footer {
 @media (max-width: 768px) {
     .product-photo {
         height: 200px;
-        padding: 12px;
+        padding: 10px;
+        border-radius: 16px;
     }
     
     .product-card.featured:hover .product-photo {
