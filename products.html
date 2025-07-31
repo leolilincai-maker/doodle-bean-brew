@@ -57,7 +57,7 @@
                                 <div class="option-group">
                                     <label class="option-label">杯型:</label>
                                     <div class="option-buttons">
-                                        <button type="button" class="option-btn active" onclick="selectSize('signature', 'large', 7.80)">
+                                        <button type="button" class="option-btn" onclick="selectSize('signature', 'large', 7.80)">
                                             大杯
                                         </button>
                                         <button type="button" class="option-btn" onclick="selectSize('signature', 'small', 6.80)">
@@ -1547,13 +1547,13 @@ ${currentPaymentData.orderItems}
         // 红粉豆语产品定制选项功能
         let signatureOptions = {
             'homeSignature': {
-                size: 'large',
+                size: null,
                 temperature: null,
                 sugar: null,
                 price: 7.80
             },
             'signature': {
-                size: 'large', 
+                size: null, 
                 temperature: null,
                 sugar: null,
                 price: 7.80
@@ -1565,12 +1565,16 @@ ${currentPaymentData.orderItems}
             const clickedButton = event.target;
             const isCurrentlyActive = clickedButton.classList.contains('active');
             
-            // 如果点击的是已选中的选项，则不做任何操作（杯型必须选择一个）
+            // 如果点击的是已选中的选项，取消选择
             if (isCurrentlyActive) {
+                clickedButton.classList.remove('active');
+                signatureOptions[productId].size = null;
+                signatureOptions[productId].price = 7.80; // 默认显示大杯价格
+                updatePrice(productId);
                 return;
             }
             
-            // 更新选项状态
+            // 选择新选项
             signatureOptions[productId].size = size;
             signatureOptions[productId].price = price;
             
@@ -1634,7 +1638,7 @@ ${currentPaymentData.orderItems}
         // 获取产品完整描述
         function getSignatureDescription(productId) {
             const options = signatureOptions[productId];
-            const sizeText = options.size === 'large' ? '大杯' : '小杯';
+            const sizeText = options.size === 'large' ? '大杯' : (options.size === 'small' ? '小杯' : '标准杯');
             const tempText = options.temperature === 'hot' ? '热饮' : (options.temperature === 'cold' ? '冰饮' : '常温');
             const sugarText = options.sugar === 'none' ? '无糖' : (options.sugar === 'half' ? '半糖' : (options.sugar === 'standard' ? '标准糖' : '不加糖'));
             
