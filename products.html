@@ -49,7 +49,52 @@
                                 <span class="highlight">🌹 玫瑰花瓣</span>
                                 <span class="highlight">💖 美颜功效</span>
                             </div>
-                            <div class="product-price">S$7.80</div>
+                            <div class="product-price" id="signaturePrice">S$7.80</div>
+                            
+                            <!-- 产品定制选项 -->
+                            <div class="product-options">
+                                <!-- 杯型选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">杯型:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn active" onclick="selectSize('signature', 'large', 7.80)">
+                                            大杯 +S$1.00
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSize('signature', 'small', 6.80)">
+                                            小杯
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 温度选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">温度:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn active" onclick="selectTemperature('signature', 'hot')">
+                                            🔥 热饮
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectTemperature('signature', 'cold')">
+                                            🧊 冰饮
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 糖分选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">糖分:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSugar('signature', 'none')">
+                                            无糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('signature', 'half')">
+                                            半糖
+                                        </button>
+                                        <button type="button" class="option-btn active" onclick="selectSugar('signature', 'standard')">
+                                            标准糖
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- 数量选择 -->
                             <div class="quantity-selector">
@@ -62,10 +107,10 @@
                             </div>
                             
                             <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('红粉豆语 Signature Blend', 'S$7.80', '🌹', 'signatureQuantity')">
+                                <button class="order-btn cart-btn" onclick="addSignatureToCart('signature')">
                                     🛒 加入购物车
                                 </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '红粉豆语 Signature Blend', 'S$7.80')">
+                                <button class="order-btn whatsapp-btn" onclick="orderSignatureProduct('signature')">
                                     📱 立即订购
                                 </button>
                             </div>
@@ -1497,6 +1542,94 @@ ${currentPaymentData.orderItems}
             if (modal) {
                 modal.remove();
             }
+        }
+
+        // 红粉豆语产品定制选项功能
+        let signatureOptions = {
+            'homeSignature': {
+                size: 'large',
+                temperature: 'hot',
+                sugar: 'standard',
+                price: 7.80
+            },
+            'signature': {
+                size: 'large', 
+                temperature: 'hot',
+                sugar: 'standard',
+                price: 7.80
+            }
+        };
+
+        // 选择杯型
+        function selectSize(productId, size, price) {
+            // 更新选项状态
+            signatureOptions[productId].size = size;
+            signatureOptions[productId].price = price;
+            
+            // 更新UI
+            const sizeButtons = document.querySelectorAll(`[onclick*="selectSize('${productId}"]`);
+            sizeButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 更新价格显示
+            updatePrice(productId);
+        }
+
+        // 选择温度
+        function selectTemperature(productId, temperature) {
+            signatureOptions[productId].temperature = temperature;
+            
+            const tempButtons = document.querySelectorAll(`[onclick*="selectTemperature('${productId}"]`);
+            tempButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // 选择糖分
+        function selectSugar(productId, sugar) {
+            signatureOptions[productId].sugar = sugar;
+            
+            const sugarButtons = document.querySelectorAll(`[onclick*="selectSugar('${productId}"]`);
+            sugarButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // 更新价格显示
+        function updatePrice(productId) {
+            const priceElement = document.getElementById(productId + 'Price');
+            if (priceElement) {
+                priceElement.textContent = `S$${signatureOptions[productId].price.toFixed(2)}`;
+            }
+        }
+
+        // 获取产品完整描述
+        function getSignatureDescription(productId) {
+            const options = signatureOptions[productId];
+            const sizeText = options.size === 'large' ? '大杯' : '小杯';
+            const tempText = options.temperature === 'hot' ? '热饮' : '冰饮';
+            const sugarText = options.sugar === 'none' ? '无糖' : (options.sugar === 'half' ? '半糖' : '标准糖');
+            
+            return `红粉豆语 (${sizeText}/${tempText}/${sugarText})`;
+        }
+
+        // 添加红粉豆语到购物车
+        function addSignatureToCart(productId) {
+            const quantityInput = document.getElementById(productId + 'Quantity');
+            const quantity = parseInt(quantityInput.value);
+            const options = signatureOptions[productId];
+            
+            const productName = getSignatureDescription(productId);
+            const price = `S$${options.price.toFixed(2)}`;
+            
+            addToCart(productName, price, '🌹', quantityInput.id);
+        }
+
+        // 直接订购红粉豆语
+        function orderSignatureProduct(productId) {
+            const options = signatureOptions[productId];
+            const productName = getSignatureDescription(productId);
+            const price = `S$${options.price.toFixed(2)}`;
+            
+            startDeliveryVerification('whatsapp', productName, price);
         }
 
         document.addEventListener('DOMContentLoaded', function() {

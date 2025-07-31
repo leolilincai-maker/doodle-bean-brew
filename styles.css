@@ -876,3 +876,112 @@ footer {
         transform: scale(1.02);
     }
 } 
+
+/* 产品定制选项样式 */
+.product-options {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+}
+
+.option-group {
+    margin-bottom: 1rem;
+}
+
+.option-group:last-child {
+    margin-bottom: 0;
+}
+
+.option-label {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.option-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.option-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 0.6rem 1rem;
+    border: 2px solid #dee2e6;
+    background: white;
+    color: #6c757d;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.option-btn:hover {
+    border-color: var(--secondary-color);
+    background: #fff8f1;
+    color: var(--secondary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(244, 162, 97, 0.2);
+}
+
+.option-btn.active {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(107, 142, 123, 0.3);
+}
+
+.option-btn.active:hover {
+    background: #5a7a6b;
+    border-color: #5a7a6b;
+    box-shadow: 0 6px 20px rgba(107, 142, 123, 0.4);
+}
+
+/* 招牌产品的定制选项特殊样式 */
+.product-card.featured .product-options {
+    background: linear-gradient(135deg, #fff9f5 0%, #f5f0eb 100%);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 4px 15px rgba(244, 162, 97, 0.1);
+}
+
+.product-card.featured .option-btn.active {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 15px rgba(244, 162, 97, 0.4);
+}
+
+.product-card.featured .option-btn.active:hover {
+    background: linear-gradient(135deg, #e39442, #d95d42);
+    box-shadow: 0 6px 20px rgba(244, 162, 97, 0.5);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .product-options {
+        padding: 0.8rem;
+        margin: 0.8rem 0;
+    }
+    
+    .option-buttons {
+        gap: 0.4rem;
+    }
+    
+    .option-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 70px;
+    }
+    
+    .option-label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+} 
