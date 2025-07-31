@@ -933,16 +933,16 @@ footer {
 }
 
 .option-btn.active {
-    border-color: var(--primary-color);
-    background: var(--primary-color);
+    border-color: var(--secondary-color);
+    background: var(--secondary-color);
     color: white;
-    box-shadow: 0 4px 15px rgba(107, 142, 123, 0.3);
+    box-shadow: 0 4px 15px rgba(244, 162, 97, 0.3);
 }
 
 .option-btn.active:hover {
-    background: #5a7a6b;
-    border-color: #5a7a6b;
-    box-shadow: 0 6px 20px rgba(107, 142, 123, 0.4);
+    background: #e09347;
+    border-color: #e09347;
+    box-shadow: 0 6px 20px rgba(244, 162, 97, 0.4);
 }
 
 /* 招牌产品的定制选项特殊样式 */

@@ -81,7 +81,7 @@
                                     <label class="option-label">杯型:</label>
                                     <div class="option-buttons">
                                         <button type="button" class="option-btn active" onclick="selectSize('homeSignature', 'large', 7.80)">
-                                            大杯 +S$1.00
+                                            大杯
                                         </button>
                                         <button type="button" class="option-btn" onclick="selectSize('homeSignature', 'small', 6.80)">
                                             小杯
@@ -93,7 +93,7 @@
                                 <div class="option-group">
                                     <label class="option-label">温度:</label>
                                     <div class="option-buttons">
-                                        <button type="button" class="option-btn active" onclick="selectTemperature('homeSignature', 'hot')">
+                                        <button type="button" class="option-btn" onclick="selectTemperature('homeSignature', 'hot')">
                                             🔥 热饮
                                         </button>
                                         <button type="button" class="option-btn" onclick="selectTemperature('homeSignature', 'cold')">
@@ -112,7 +112,7 @@
                                         <button type="button" class="option-btn" onclick="selectSugar('homeSignature', 'half')">
                                             半糖
                                         </button>
-                                        <button type="button" class="option-btn active" onclick="selectSugar('homeSignature', 'standard')">
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeSignature', 'standard')">
                                             标准糖
                                         </button>
                                     </div>
@@ -1167,20 +1167,28 @@
         let signatureOptions = {
             'homeSignature': {
                 size: 'large',
-                temperature: 'hot',
-                sugar: 'standard',
+                temperature: null,
+                sugar: null,
                 price: 7.80
             },
             'signature': {
                 size: 'large', 
-                temperature: 'hot',
-                sugar: 'standard',
+                temperature: null,
+                sugar: null,
                 price: 7.80
             }
         };
 
         // 选择杯型
         function selectSize(productId, size, price) {
+            const clickedButton = event.target;
+            const isCurrentlyActive = clickedButton.classList.contains('active');
+            
+            // 如果点击的是已选中的选项，则不做任何操作（杯型必须选择一个）
+            if (isCurrentlyActive) {
+                return;
+            }
+            
             // 更新选项状态
             signatureOptions[productId].size = size;
             signatureOptions[productId].price = price;
@@ -1188,7 +1196,7 @@
             // 更新UI
             const sizeButtons = document.querySelectorAll(`[onclick*="selectSize('${productId}"]`);
             sizeButtons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            clickedButton.classList.add('active');
             
             // 更新价格显示
             updatePrice(productId);
@@ -1196,20 +1204,42 @@
 
         // 选择温度
         function selectTemperature(productId, temperature) {
+            const clickedButton = event.target;
+            const isCurrentlyActive = clickedButton.classList.contains('active');
+            
+            // 如果点击的是已选中的选项，取消选择
+            if (isCurrentlyActive) {
+                clickedButton.classList.remove('active');
+                signatureOptions[productId].temperature = null;
+                return;
+            }
+            
+            // 选择新选项
             signatureOptions[productId].temperature = temperature;
             
             const tempButtons = document.querySelectorAll(`[onclick*="selectTemperature('${productId}"]`);
             tempButtons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            clickedButton.classList.add('active');
         }
 
         // 选择糖分
         function selectSugar(productId, sugar) {
+            const clickedButton = event.target;
+            const isCurrentlyActive = clickedButton.classList.contains('active');
+            
+            // 如果点击的是已选中的选项，取消选择
+            if (isCurrentlyActive) {
+                clickedButton.classList.remove('active');
+                signatureOptions[productId].sugar = null;
+                return;
+            }
+            
+            // 选择新选项
             signatureOptions[productId].sugar = sugar;
             
             const sugarButtons = document.querySelectorAll(`[onclick*="selectSugar('${productId}"]`);
             sugarButtons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            clickedButton.classList.add('active');
         }
 
         // 更新价格显示
@@ -1224,8 +1254,8 @@
         function getSignatureDescription(productId) {
             const options = signatureOptions[productId];
             const sizeText = options.size === 'large' ? '大杯' : '小杯';
-            const tempText = options.temperature === 'hot' ? '热饮' : '冰饮';
-            const sugarText = options.sugar === 'none' ? '无糖' : (options.sugar === 'half' ? '半糖' : '标准糖');
+            const tempText = options.temperature === 'hot' ? '热饮' : (options.temperature === 'cold' ? '冰饮' : '常温');
+            const sugarText = options.sugar === 'none' ? '无糖' : (options.sugar === 'half' ? '半糖' : (options.sugar === 'standard' ? '标准糖' : '不加糖'));
             
             return `红粉豆语 (${sizeText}/${tempText}/${sugarText})`;
         }
