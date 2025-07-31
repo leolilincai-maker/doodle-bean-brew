@@ -836,16 +836,19 @@ footer {
 /* 产品照片样式 */
 .product-photo {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
+    padding: 15px;
+    background-color: #fafafa;
 }
 
 .product-card.featured .product-photo {
     border: 3px solid transparent;
-    background: linear-gradient(white, white) padding-box,
+    background: linear-gradient(#fafafa, #fafafa) padding-box,
                 linear-gradient(135deg, var(--secondary-color), var(--accent-color)) border-box;
     box-shadow: 0 12px 35px rgba(244, 162, 97, 0.3);
 }
@@ -864,7 +867,8 @@ footer {
 
 @media (max-width: 768px) {
     .product-photo {
-        height: 180px;
+        height: 200px;
+        padding: 12px;
     }
     
     .product-card.featured:hover .product-photo {
