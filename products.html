@@ -1110,10 +1110,18 @@
         
         // 发送PayNow订单到WhatsApp
         function sendPayNowOrderToWhatsApp() {
-            let message;
+            console.log('PayNow按钮被点击'); // 调试日志
             
-            if (currentPaymentData.isCart) {
-                message = `🌱【豆豆谷批量订购】你好！我想订购以下商品：
+            if (!currentPaymentData) {
+                alert('订单数据未准备好，请先选择支付方式。');
+                return;
+            }
+            
+            try {
+                let message;
+                
+                if (currentPaymentData.isCart) {
+                    message = `🌱【豆豆谷批量订购】你好！我想订购以下商品：
 
 📋 订单详情：
 ${currentPaymentData.orderItems}
@@ -1126,8 +1134,8 @@ ${currentPaymentData.orderItems}
 💰 支付金额：S$${currentPaymentData.totalPrice.toFixed(2)}
 
 请提供PayNow转账信息，我完成转账后会截图确认。谢谢！`;
-            } else {
-                message = `🌱【豆豆谷订购】你好！我想订购：${currentPaymentData.productName} ${currentPaymentData.productPrice}
+                } else {
+                    message = `🌱【豆豆谷订购】你好！我想订购：${currentPaymentData.productName} ${currentPaymentData.productPrice}
 
 📍 配送地址：${currentPaymentData.address}
 🚚 免费配送服务
@@ -1136,19 +1144,24 @@ ${currentPaymentData.orderItems}
 💰 支付金额：S$${currentPaymentData.productPrice}
 
 请提供PayNow转账信息，我完成转账后会截图确认。谢谢！`;
+                }
+                
+                console.log('准备发送WhatsApp消息'); // 调试日志
+                openWhatsAppChat(message);
+                
+                // 如果是购物车订购，清空购物车
+                if (currentPaymentData.isCart) {
+                    cart = [];
+                    localStorage.setItem('doodleCart', JSON.stringify(cart));
+                    updateCartDisplay();
+                }
+                
+                closePaymentModal();
+                showOrderSuccess();
+            } catch (error) {
+                console.error('发送订单失败:', error);
+                alert('发送订单时出现错误，请重试。');
             }
-            
-            openWhatsAppChat(message);
-            
-            // 如果是购物车订购，清空购物车
-            if (currentPaymentData.isCart) {
-                cart = [];
-                localStorage.setItem('doodleCart', JSON.stringify(cart));
-                updateCartDisplay();
-            }
-            
-            closePaymentModal();
-            showOrderSuccess();
         }
         
         // 发送微信支付订单到WhatsApp
@@ -1267,7 +1280,15 @@ ${currentPaymentData.orderItems}
         function openWhatsAppChat(message) {
             const selectedNumber = getRandomWhatsApp();
             const whatsappUrl = `https://wa.me/${selectedNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+            
+            // 移动端兼容性处理
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // 移动端直接跳转，避免window.open问题
+                window.location.href = whatsappUrl;
+            } else {
+                // 桌面端使用新窗口
+                window.open(whatsappUrl, '_blank');
+            }
         }
 
         // 启动配送地址验证流程

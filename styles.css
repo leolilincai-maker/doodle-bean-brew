@@ -984,4 +984,35 @@ footer {
         font-size: 0.85rem;
         margin-bottom: 0.4rem;
     }
+}
+
+/* 移动端触摸优化 */
+@media (max-width: 768px) {
+    /* 支付按钮移动端优化 */
+    button[onclick*="sendPayNowOrderToWhatsApp"],
+    button[onclick*="sendWeChatOrderToWhatsApp"] {
+        min-height: 48px !important;
+        padding: 1rem 1.5rem !important;
+        font-size: 1rem !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
+    }
+    
+    /* 所有按钮的移动端触摸优化 */
+    .order-btn,
+    .option-btn {
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+    
+    /* 防止移动端双击缩放 */
+    .payment-modal button,
+    .address-modal button {
+        touch-action: manipulation !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+    }
 } 

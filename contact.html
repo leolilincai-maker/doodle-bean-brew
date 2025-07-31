@@ -149,7 +149,15 @@
             const phoneNumber = getRandomWhatsApp();
             const encodedMessage = encodeURIComponent(message);
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            window.open(whatsappURL, '_blank');
+            
+            // 移动端兼容性处理
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // 移动端直接跳转，避免window.open问题
+                window.location.href = whatsappURL;
+            } else {
+                // 桌面端使用新窗口
+                window.open(whatsappURL, '_blank');
+            }
         }
 
         // 发送通用WhatsApp咨询
