@@ -126,6 +126,17 @@
         <section class="section">
             <div class="container">
                 <h2 class="section-title">📱 联系订购 Contact & Order</h2>
+                
+                <!-- 免费配送说明 -->
+                <div class="delivery-info" style="background: linear-gradient(135deg, #6B8E7B, #F4A261); color: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; text-align: center;">
+                    <h3 style="color: white; margin-bottom: 1rem;">🚚 免费配送服务 Free Delivery</h3>
+                    <p style="font-size: 1.1rem; margin: 0;">
+                        <strong>配送范围</strong>：West Terra @ Bukit Batok (Block 447-453) & Le Quest公寓<br>
+                        <strong>配送费用</strong>：完全免费 ✨<br>
+                        <strong>配送时间</strong>：订购后30-60分钟内送达
+                    </p>
+                </div>
+                
                 <div class="cards-grid">
                     <div class="card">
                         <span class="card-icon">📱</span>
@@ -134,12 +145,9 @@
                         <strong>WhatsApp:</strong> 智能分配到团队成员<br>
                         <strong>咨询时间:</strong> 随时留言，会及时回复<br>
                         <em style="font-size: 0.9em; color: #666;">双人团队，真人服务每一位客户</em></p>
-                        <a href="#" 
-                           class="order-btn whatsapp-btn" 
-                           data-message="🌱【豆豆谷咨询】Hi! 我从官网看到豆豆谷 Doodle Bean Brew，想了解一下产品和订购方式。谢谢！"
-                           style="margin-top: 1rem;">
+                        <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp')" style="margin-top: 1rem;">
                             💬 WhatsApp咨询
-                        </a>
+                        </button>
                     </div>
                     
                     <div class="card">
@@ -148,10 +156,9 @@
                         <p>华人群体专属服务<br>
                         <strong>微信号:</strong> 18565651233<br>
                         <strong>服务时间:</strong> 9:00 AM - 9:00 PM</p>
-                        <div class="order-btn wechat-btn" style="margin-top: 1rem; cursor: pointer;" 
-                             onclick="showWeChatInfo()">
+                        <button class="order-btn wechat-btn" onclick="startDeliveryVerification('wechat')" style="margin-top: 1rem;">
                             💬 微信咨询
-                        </div>
+                        </button>
                     </div>
                     
                     <div class="card">
@@ -215,6 +222,19 @@
             '6583009375'   // 合伙人
         ];
 
+        // 配送区域定义
+        const deliveryAreas = {
+            westTerra: {
+                name: 'West Terra @ Bukit Batok',
+                blocks: ['447', '448', '449', '450', '451', '452', '453'],
+                address: 'Bukit Batok West Avenue'
+            },
+            leQuest: {
+                name: 'Le Quest公寓',
+                address: 'Bukit Batok West Avenue 6'
+            }
+        };
+
         function getRandomWhatsApp() {
             const randomIndex = Math.floor(Math.random() * whatsappNumbers.length);
             return whatsappNumbers[randomIndex];
@@ -224,6 +244,159 @@
             const selectedNumber = getRandomWhatsApp();
             const whatsappUrl = `https://wa.me/${selectedNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+        }
+
+        // 启动配送地址验证流程
+        function startDeliveryVerification(platform, productName = '', productPrice = '') {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(5px);
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                max-width: 500px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                position: relative;
+            `;
+            
+            content.innerHTML = `
+                <h3 style="color: #6B8E7B; margin-bottom: 1.5rem;">🚚 配送地址验证</h3>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: left;">
+                    <h4 style="color: #333; margin-bottom: 1rem;">✅ 免费配送区域：</h4>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>🏠 West Terra @ Bukit Batok</strong><br>
+                        <span style="color: #666;">Block 447, 448, 449, 450, 451, 452, 453</span><br>
+                        <span style="color: #666;">Bukit Batok West Avenue 2/5</span>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>🏢 Le Quest公寓</strong><br>
+                        <span style="color: #666;">Bukit Batok West Avenue 6</span>
+                    </div>
+                    <div style="color: #E76F51; font-weight: bold;">
+                        🚚 配送费用：完全免费<br>
+                        ⏰ 配送时间：30-60分钟
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">请选择您的地址：</label>
+                    <select id="addressSelect" style="width: 100%; padding: 0.8rem; border: 2px solid #6B8E7B; border-radius: 10px; font-size: 1rem;">
+                        <option value="">请选择您的具体地址...</option>
+                        <optgroup label="🏠 West Terra @ Bukit Batok">
+                            <option value="447">Block 447 Bukit Batok West Avenue</option>
+                            <option value="448">Block 448 Bukit Batok West Avenue</option>
+                            <option value="449">Block 449 Bukit Batok West Avenue</option>
+                            <option value="450">Block 450 Bukit Batok West Avenue</option>
+                            <option value="451">Block 451 Bukit Batok West Avenue</option>
+                            <option value="452">Block 452 Bukit Batok West Avenue</option>
+                            <option value="453">Block 453 Bukit Batok West Avenue</option>
+                        </optgroup>
+                        <optgroup label="🏢 Le Quest公寓">
+                            <option value="lequest">Le Quest, Bukit Batok West Avenue 6</option>
+                        </optgroup>
+                        <option value="other">我的地址不在上述范围内</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button onclick="processAddressSelection('${platform}', '${productName}', '${productPrice}')" 
+                            style="background: #6B8E7B; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: bold;">
+                        确认订购
+                    </button>
+                    <button onclick="closeAddressModal()" 
+                            style="background: #ccc; color: #333; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer;">
+                        取消
+                    </button>
+                </div>
+                
+                <button onclick="closeAddressModal()" style="
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #999;
+                ">✕</button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // 点击背景关闭
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeAddressModal();
+                }
+            });
+        }
+
+        // 处理地址选择
+        function processAddressSelection(platform, productName, productPrice) {
+            const addressSelect = document.getElementById('addressSelect');
+            const selectedAddress = addressSelect.value;
+            const selectedText = addressSelect.options[addressSelect.selectedIndex].text;
+            
+            if (!selectedAddress) {
+                alert('请选择您的配送地址');
+                return;
+            }
+            
+            if (selectedAddress === 'other') {
+                alert('很抱歉，您的地址暂时不在我们的配送范围内。\n\n我们目前只服务：\n• West Terra @ Bukit Batok (Block 447-453)\n• Le Quest公寓\n\n感谢您的理解！');
+                return;
+            }
+            
+            closeAddressModal();
+            
+            // 根据平台执行不同操作
+            if (platform === 'whatsapp') {
+                let message;
+                if (productName && productPrice) {
+                    message = `🌱【豆豆谷订购】你好！我想订购：${productName} ${productPrice}
+
+📍 配送地址：${selectedText}
+🚚 免费配送服务
+
+请问什么时候可以安排配送？谢谢！`;
+                } else {
+                    message = `🌱【豆豆谷咨询】Hi! 我从官网看到豆豆谷 Doodle Bean Brew，想了解一下产品和订购方式。
+
+📍 我的地址：${selectedText}
+🚚 了解到您提供免费配送服务
+
+谢谢！`;
+                }
+                openWhatsAppChat(message);
+            } else if (platform === 'wechat') {
+                showWeChatInfo();
+            }
+        }
+
+        // 关闭地址验证模态框
+        function closeAddressModal() {
+            const modal = document.querySelector('div[style*="position: fixed"][style*="z-index: 10000"]');
+            if (modal) {
+                modal.remove();
+            }
         }
 
         function showWeChatInfo() {
@@ -294,6 +467,11 @@
                     <p>• 工作日：晚上统一回复</p>
                     <p>• 周末：上午/下午集中回复</p>
                     <p>🔥 急需订购建议使用WhatsApp（即时回复）</p>
+                    
+                    <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                        <p style="margin: 0; color: #6B8E7B; font-weight: bold;">🚚 免费配送服务</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem;">West Terra @ Bukit Batok (Block 447-453) & Le Quest公寓</p>
+                    </div>
                 </div>
                 
                 <button onclick="closeWeChatModal()" style="
