@@ -65,16 +65,24 @@
                             <h3 class="product-name">桂花黄豆奶茶</h3>
                             <p class="product-description">香甜桂花配上浓郁黄豆香，口感丰富，营养满分</p>
                             <div class="product-price">S$6.80</div>
+                            
+                            <!-- 数量选择 -->
+                            <div class="quantity-selector">
+                                <label for="homeQuantity1">数量:</label>
+                                <div class="quantity-controls">
+                                    <button type="button" onclick="changeQuantity('homeQuantity1', -1)">-</button>
+                                    <input type="number" id="homeQuantity1" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('homeQuantity1', 1)">+</button>
+                                </div>
+                            </div>
+                            
                             <div class="order-buttons">
-                                <a href="#" 
-                                   class="order-btn whatsapp-btn" 
-                                   data-message="🌱【豆豆谷订购】你好！我想订购：桂花黄豆奶茶 S$6.80。请问如何安排配送？谢谢！">
-                                    📱 WhatsApp订购
-                                </a>
-                                <a href="#" onclick="showWeChatInfo()" 
-                                   class="order-btn wechat-btn">
-                                    💬 微信订购
-                                </a>
+                                <button class="order-btn cart-btn" onclick="addToCart('桂花黄豆奶茶', 'S$6.80', '🌻', 'homeQuantity1')">
+                                    🛒 加入购物车
+                                </button>
+                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '桂花黄豆奶茶', 'S$6.80')">
+                                    📱 立即订购
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -84,16 +92,24 @@
                             <h3 class="product-name">玫瑰红豆拿铁</h3>
                             <p class="product-description">浪漫玫瑰花瓣与红豆的甜蜜邂逅，颜值与美味并存</p>
                             <div class="product-price">S$7.50</div>
+                            
+                            <!-- 数量选择 -->
+                            <div class="quantity-selector">
+                                <label for="homeQuantity2">数量:</label>
+                                <div class="quantity-controls">
+                                    <button type="button" onclick="changeQuantity('homeQuantity2', -1)">-</button>
+                                    <input type="number" id="homeQuantity2" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('homeQuantity2', 1)">+</button>
+                                </div>
+                            </div>
+                            
                             <div class="order-buttons">
-                                <a href="#" 
-                                   class="order-btn whatsapp-btn" 
-                                   data-message="🌱【豆豆谷订购】你好！我想订购：玫瑰红豆拿铁 S$7.50。请问如何安排配送？谢谢！">
-                                    📱 WhatsApp订购
-                                </a>
-                                <a href="#" onclick="showWeChatInfo()" 
-                                   class="order-btn wechat-btn">
-                                    💬 微信订购
-                                </a>
+                                <button class="order-btn cart-btn" onclick="addToCart('玫瑰红豆拿铁', 'S$7.50', '🌹', 'homeQuantity2')">
+                                    🛒 加入购物车
+                                </button>
+                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '玫瑰红豆拿铁', 'S$7.50')">
+                                    📱 立即订购
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -103,16 +119,24 @@
                             <h3 class="product-name">茉莉绿豆沙冰</h3>
                             <p class="product-description">清香茉莉花配绿豆，清热解毒，夏日首选</p>
                             <div class="product-price">S$6.20</div>
+                            
+                            <!-- 数量选择 -->
+                            <div class="quantity-selector">
+                                <label for="homeQuantity3">数量:</label>
+                                <div class="quantity-controls">
+                                    <button type="button" onclick="changeQuantity('homeQuantity3', -1)">-</button>
+                                    <input type="number" id="homeQuantity3" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('homeQuantity3', 1)">+</button>
+                                </div>
+                            </div>
+                            
                             <div class="order-buttons">
-                                <a href="#" 
-                                   class="order-btn whatsapp-btn" 
-                                   data-message="🌱【豆豆谷订购】你好！我想订购：茉莉绿豆沙冰 S$6.20。请问如何安排配送？谢谢！">
-                                    📱 WhatsApp订购
-                                </a>
-                                <a href="#" onclick="showWeChatInfo()" 
-                                   class="order-btn wechat-btn">
-                                    💬 微信订购
-                                </a>
+                                <button class="order-btn cart-btn" onclick="addToCart('茉莉绿豆沙冰', 'S$6.20', '🌿', 'homeQuantity3')">
+                                    🛒 加入购物车
+                                </button>
+                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '茉莉绿豆沙冰', 'S$6.20')">
+                                    📱 立即订购
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -199,6 +223,13 @@
         </section>
     </main>
 
+    <!-- 购物车悬浮图标 -->
+    <div id="cartFloat" class="cart-float" onclick="openCart()">
+        <div class="cart-icon">🛒</div>
+        <div id="cartCount" class="cart-count">0</div>
+        <div id="cartTotal" class="cart-total">S$0.00</div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -216,6 +247,136 @@
     </footer>
 
     <script>
+        // ==================== 购物车系统 ====================
+        
+        // 购物车数据
+        let cart = JSON.parse(localStorage.getItem('doodleCart')) || [];
+        
+        // 当前订单数据（用于地址验证）
+        let currentOrderData = null;
+        
+        // 初始化购物车显示
+        function initCart() {
+            updateCartDisplay();
+        }
+        
+        // 数量控制
+        function changeQuantity(inputId, change) {
+            const input = document.getElementById(inputId);
+            let currentValue = parseInt(input.value);
+            let newValue = currentValue + change;
+            
+            if (newValue >= 1 && newValue <= 10) {
+                input.value = newValue;
+            }
+        }
+        
+        // 添加到购物车
+        function addToCart(name, price, emoji, quantityId) {
+            const quantity = parseInt(document.getElementById(quantityId).value);
+            const priceNum = parseFloat(price.replace('S$', ''));
+            
+            // 检查是否已存在相同产品
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    name: name,
+                    price: priceNum,
+                    emoji: emoji,
+                    quantity: quantity
+                });
+            }
+            
+            // 保存到localStorage
+            localStorage.setItem('doodleCart', JSON.stringify(cart));
+            
+            // 更新显示
+            updateCartDisplay();
+            
+            // 重置数量为1
+            document.getElementById(quantityId).value = 1;
+            
+            // 显示添加成功提示
+            showAddToCartSuccess(name, quantity);
+        }
+        
+        // 显示添加成功提示
+        function showAddToCartSuccess(name, quantity) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--primary-color);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 10001;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            
+            toast.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.2rem;">✅</span>
+                    <div>
+                        <div style="font-weight: bold;">${name}</div>
+                        <div style="font-size: 0.9rem;">已添加 ${quantity} 份到购物车</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // 动画显示
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // 3秒后移除
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // 更新购物车显示
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            const cartFloat = document.getElementById('cartFloat');
+            
+            if (cart.length === 0) {
+                cartCount.textContent = '0';
+                cartTotal.textContent = 'S$0.00';
+                cartFloat.style.display = 'none';
+                return;
+            }
+            
+            // 计算总数量和总价
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalQuantity;
+            cartTotal.textContent = `S$${totalPrice.toFixed(2)}`;
+            cartFloat.style.display = 'flex';
+        }
+        
+        // 打开购物车（跳转到产品页面）
+        function openCart() {
+            window.location.href = 'products.html';
+        }
+
+        // ==================== 原有功能保持不变 ====================
+        
         // WhatsApp随机分配系统
         const whatsappNumbers = [
             '6591012399',  // 用户本人
@@ -533,7 +694,9 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // 滚动动画
+            // 初始化购物车
+            initCart();
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -546,8 +709,8 @@
                 observer.observe(el);
             });
 
-            // 绑定WhatsApp按钮点击事件
-            document.querySelectorAll('.whatsapp-btn').forEach(button => {
+            // 绑定传统WhatsApp按钮点击事件（如果还有的话）
+            document.querySelectorAll('.whatsapp-btn[data-message]').forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
                     const message = this.getAttribute('data-message');
