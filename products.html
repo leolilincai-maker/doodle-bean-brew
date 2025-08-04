@@ -117,28 +117,82 @@
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">🌼</div>
+                    <!-- 新产品：桂花双豆奶 -->
+                    <div class="product-card featured">
+                        <div class="product-badge">🌟 全新推出</div>
+                        <div class="product-image">
+                            <img src="images/Guihuadouyu.jpg" alt="桂花双豆奶 - 黄豆绿豆桂花完美融合" class="product-photo">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-name">桂花黄豆奶茶</h3>
-                            <p class="product-description">精选优质黄豆，配以浓郁豆香与桂花清香，口感层次丰富。富含植物蛋白，美容养颜。</p>
-                            <div class="product-price">S$6.80</div>
+                            <h3 class="product-name">桂花双豆奶 Golden Bean Harmony</h3>
+                            <p class="product-description">精选黄豆与绿豆双重营养精华，融入天然桂花香甜。双豆搭配带来丰富蛋白质与膳食纤维，桂花增添自然甜香，口感醇厚，层次丰富，是健康与美味的完美结合。</p>
+                            <div class="product-highlights">
+                                <span class="highlight">🌟 双豆精华</span>
+                                <span class="highlight">🌼 桂花芬芳</span>
+                                <span class="highlight">💚 健康营养</span>
+                            </div>
+                            <div class="product-price" id="guihuaPrice">S$7.20</div>
+                            
+                            <!-- 产品定制选项 -->
+                            <div class="product-options">
+                                <!-- 杯型选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">杯型:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSize('guihua', 'large', 7.20)">
+                                            大杯
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSize('guihua', 'small', 6.20)">
+                                            小杯
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 温度选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">温度:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectTemperature('guihua', 'hot')">
+                                            🔥 热饮
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectTemperature('guihua', 'cold')">
+                                            🧊 冰饮
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 糖分选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">糖分:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSugar('guihua', 'none')">
+                                            无糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('guihua', 'half')">
+                                            半糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('guihua', 'standard')">
+                                            标准糖
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- 数量选择 -->
                             <div class="quantity-selector">
-                                <label for="quantity1">数量:</label>
+                                <label for="guihuaQuantity">数量:</label>
                                 <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('quantity1', -1)">-</button>
-                                    <input type="number" id="quantity1" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('quantity1', 1)">+</button>
+                                    <button type="button" onclick="changeQuantity('guihuaQuantity', -1)">-</button>
+                                    <input type="number" id="guihuaQuantity" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('guihuaQuantity', 1)">+</button>
                                 </div>
                             </div>
                             
                             <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('桂花黄豆奶茶', 'S$6.80', '🌼', 'quantity1')">
+                                <button class="order-btn cart-btn" onclick="addSignatureToCart('guihua')">
                                     🛒 加入购物车
                                 </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '桂花黄豆奶茶', 'S$6.80')">
+                                <button class="order-btn whatsapp-btn" onclick="orderSignatureProduct('guihua')">
                                     📱 立即订购
                                 </button>
                             </div>
@@ -173,28 +227,83 @@
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">🌺</div>
+                    <!-- 新产品：洛神四宝饮 -->
+                    <div class="product-card featured">
+                        <div class="product-badge">🌟 全新推出</div>
+                        <div class="product-image">
+                            <img src="images/Luoshensibao.jpg" alt="洛神四宝饮 - 黑豆红豆洛神花红枣养颜佳品" class="product-photo">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-name">洛神花黑豆热饮</h3>
-                            <p class="product-description">营养丰富的黑豆搭配天然洛神花，酸甜适中，具有抗氧化功效。</p>
-                            <div class="product-price">S$7.20</div>
+                            <h3 class="product-name">洛神四宝饮 Beauty Quartet</h3>
+                            <p class="product-description">珍贵四重配方：黑豆红豆双豆营养基底，洛神花酸甜回甘，红枣温润补血。四宝合一，具有美容养颜、补血益气、抗氧化等多重功效，是现代都市女性的养颜美容圣品。</p>
+                            <div class="product-highlights">
+                                <span class="highlight">💖 美颜圣品</span>
+                                <span class="highlight">🌺 洛神花香</span>
+                                <span class="highlight">🔥 四宝精华</span>
+                                <span class="highlight">🩸 补血益气</span>
+                            </div>
+                            <div class="product-price" id="luoshenPrice">S$8.50</div>
+                            
+                            <!-- 产品定制选项 -->
+                            <div class="product-options">
+                                <!-- 杯型选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">杯型:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSize('luoshen', 'large', 8.50)">
+                                            大杯
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSize('luoshen', 'small', 7.50)">
+                                            小杯
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 温度选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">温度:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectTemperature('luoshen', 'hot')">
+                                            🔥 热饮
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectTemperature('luoshen', 'cold')">
+                                            🧊 冰饮
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 糖分选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">糖分:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSugar('luoshen', 'none')">
+                                            无糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('luoshen', 'half')">
+                                            半糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('luoshen', 'standard')">
+                                            标准糖
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- 数量选择 -->
                             <div class="quantity-selector">
-                                <label for="quantity3">数量:</label>
+                                <label for="luoshenQuantity">数量:</label>
                                 <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('quantity3', -1)">-</button>
-                                    <input type="number" id="quantity3" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('quantity3', 1)">+</button>
+                                    <button type="button" onclick="changeQuantity('luoshenQuantity', -1)">-</button>
+                                    <input type="number" id="luoshenQuantity" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('luoshenQuantity', 1)">+</button>
                                 </div>
                             </div>
                             
                             <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('洛神花黑豆热饮', 'S$7.20', '🌺', 'quantity3')">
+                                <button class="order-btn cart-btn" onclick="addSignatureToCart('luoshen')">
                                     🛒 加入购物车
                                 </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '洛神花黑豆热饮', 'S$7.20')">
+                                <button class="order-btn whatsapp-btn" onclick="orderSignatureProduct('luoshen')">
                                     📱 立即订购
                                 </button>
                             </div>
@@ -208,28 +317,83 @@
             <div class="container">
                 <h2 class="section-title">🧊 冷饮系列</h2>
                 <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image">🌿</div>
+                    <!-- 新产品：茉莉双豆语 -->
+                    <div class="product-card featured">
+                        <div class="product-badge">🌟 全新推出</div>
+                        <div class="product-image">
+                            <img src="images/Molidouyu.jpg" alt="茉莉双豆语 - 黑豆绿豆茉莉花清香融合" class="product-photo">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-name">茉莉绿豆沙冰</h3>
-                            <p class="product-description">夏日解暑首选！新鲜绿豆制作的沙冰，加入茉莉花香，清热解毒，口感清爽。</p>
-                            <div class="product-price">S$6.20</div>
+                            <h3 class="product-name">茉莉双豆语 Jasmine Twin Beans</h3>
+                            <p class="product-description">黑豆与绿豆的营养双重奏，配以清香茉莉花香。黑豆富含花青素，绿豆清热解毒，茉莉花舒缓怡神，口感清新淡雅，具有清热解毒、美容养颜的功效，是夏日清爽的完美选择。</p>
+                            <div class="product-highlights">
+                                <span class="highlight">🌿 清热解毒</span>
+                                <span class="highlight">🌸 茉莉清香</span>
+                                <span class="highlight">💚 双豆精华</span>
+                                <span class="highlight">❄️ 清爽怡人</span>
+                            </div>
+                            <div class="product-price" id="moliPrice">S$6.80</div>
+                            
+                            <!-- 产品定制选项 -->
+                            <div class="product-options">
+                                <!-- 杯型选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">杯型:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSize('moli', 'large', 6.80)">
+                                            大杯
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSize('moli', 'small', 5.80)">
+                                            小杯
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 温度选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">温度:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectTemperature('moli', 'hot')">
+                                            🔥 热饮
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectTemperature('moli', 'cold')">
+                                            🧊 冰饮
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 糖分选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">糖分:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSugar('moli', 'none')">
+                                            无糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('moli', 'half')">
+                                            半糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('moli', 'standard')">
+                                            标准糖
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- 数量选择 -->
                             <div class="quantity-selector">
-                                <label for="quantity4">数量:</label>
+                                <label for="moliQuantity">数量:</label>
                                 <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('quantity4', -1)">-</button>
-                                    <input type="number" id="quantity4" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('quantity4', 1)">+</button>
+                                    <button type="button" onclick="changeQuantity('moliQuantity', -1)">-</button>
+                                    <input type="number" id="moliQuantity" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('moliQuantity', 1)">+</button>
                                 </div>
                             </div>
                             
                             <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('茉莉绿豆沙冰', 'S$6.20', '🌿', 'quantity4')">
+                                <button class="order-btn cart-btn" onclick="addSignatureToCart('moli')">
                                     🛒 加入购物车
                                 </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '茉莉绿豆沙冰', 'S$6.20')">
+                                <button class="order-btn whatsapp-btn" onclick="orderSignatureProduct('moli')">
                                     📱 立即订购
                                 </button>
                             </div>
@@ -1563,19 +1727,67 @@ ${currentPaymentData.orderItems}
             }
         }
 
-        // 红粉豆语产品定制选项功能
+        // 产品定制选项功能
         let signatureOptions = {
+            // 红粉豆语
             'homeSignature': {
                 size: null,
                 temperature: null,
                 sugar: null,
-                price: 7.80
+                price: 7.80,
+                name: '红粉豆语'
             },
             'signature': {
                 size: null, 
                 temperature: null,
                 sugar: null,
-                price: 7.80
+                price: 7.80,
+                name: '红粉豆语'
+            },
+            // 桂花双豆奶
+            'homeGuihua': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 7.20,
+                name: '桂花双豆奶'
+            },
+            'guihua': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 7.20,
+                name: '桂花双豆奶'
+            },
+            // 茉莉双豆语
+            'homeMoli': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 6.80,
+                name: '茉莉双豆语'
+            },
+            'moli': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 6.80,
+                name: '茉莉双豆语'
+            },
+            // 洛神四宝饮
+            'homeLuoshen': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 8.50,
+                name: '洛神四宝饮'
+            },
+            'luoshen': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 8.50,
+                name: '洛神四宝饮'
             }
         };
 
@@ -1584,11 +1796,19 @@ ${currentPaymentData.orderItems}
             const clickedButton = event.target;
             const isCurrentlyActive = clickedButton.classList.contains('active');
             
+            // 获取产品的初始价格映射
+            const defaultPrices = {
+                'homeSignature': 7.80, 'signature': 7.80,
+                'homeGuihua': 7.20, 'guihua': 7.20,
+                'homeMoli': 6.80, 'moli': 6.80,
+                'homeLuoshen': 8.50, 'luoshen': 8.50
+            };
+            
             // 如果点击的是已选中的选项，取消选择
             if (isCurrentlyActive) {
                 clickedButton.classList.remove('active');
                 signatureOptions[productId].size = null;
-                signatureOptions[productId].price = 7.80; // 默认显示大杯价格
+                signatureOptions[productId].price = defaultPrices[productId]; // 使用对应产品的默认价格
                 updatePrice(productId);
                 return;
             }
@@ -1661,7 +1881,7 @@ ${currentPaymentData.orderItems}
             const tempText = options.temperature === 'hot' ? '热饮' : (options.temperature === 'cold' ? '冰饮' : '常温');
             const sugarText = options.sugar === 'none' ? '无糖' : (options.sugar === 'half' ? '半糖' : (options.sugar === 'standard' ? '标准糖' : '不加糖'));
             
-            return `红粉豆语 (${sizeText}/${tempText}/${sugarText})`;
+            return `${options.name} (${sizeText}/${tempText}/${sugarText})`;
         }
 
         // 添加红粉豆语到购物车

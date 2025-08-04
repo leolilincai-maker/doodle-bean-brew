@@ -140,82 +140,242 @@
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">🌻</div>
+                    <!-- 新产品：桂花双豆奶 -->
+                    <div class="product-card featured">
+                        <div class="product-badge">🌟 全新推出</div>
+                        <div class="product-image">
+                            <img src="images/Guihuadouyu.jpg" alt="桂花双豆奶 - 黄豆绿豆桂花完美融合" class="product-photo">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-name">桂花黄豆奶茶</h3>
-                            <p class="product-description">香甜桂花配上浓郁黄豆香，口感丰富，营养满分</p>
-                            <div class="product-price">S$6.80</div>
+                            <h3 class="product-name">桂花双豆奶</h3>
+                            <p class="product-description">精选黄豆与绿豆双重营养，融入天然桂花香甜，口感醇厚，层次丰富</p>
+                            <div class="product-highlights">
+                                <span class="highlight">🌟 双豆精华</span>
+                                <span class="highlight">🌼 桂花芬芳</span>
+                            </div>
+                            <div class="product-price" id="homeGuihuaPrice">S$7.20</div>
+                            
+                            <!-- 产品定制选项 -->
+                            <div class="product-options">
+                                <!-- 杯型选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">杯型:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSize('homeGuihua', 'large', 7.20)">
+                                            大杯
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSize('homeGuihua', 'small', 6.20)">
+                                            小杯
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 温度选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">温度:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectTemperature('homeGuihua', 'hot')">
+                                            🔥 热饮
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectTemperature('homeGuihua', 'cold')">
+                                            🧊 冰饮
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 糖分选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">糖分:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeGuihua', 'none')">
+                                            无糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeGuihua', 'half')">
+                                            半糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeGuihua', 'standard')">
+                                            标准糖
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- 数量选择 -->
                             <div class="quantity-selector">
-                                <label for="homeQuantity1">数量:</label>
+                                <label for="homeGuihuaQuantity">数量:</label>
                                 <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('homeQuantity1', -1)">-</button>
-                                    <input type="number" id="homeQuantity1" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('homeQuantity1', 1)">+</button>
+                                    <button type="button" onclick="changeQuantity('homeGuihuaQuantity', -1)">-</button>
+                                    <input type="number" id="homeGuihuaQuantity" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('homeGuihuaQuantity', 1)">+</button>
                                 </div>
                             </div>
                             
                             <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('桂花黄豆奶茶', 'S$6.80', '🌻', 'homeQuantity1')">
+                                <button class="order-btn cart-btn" onclick="addSignatureToCart('homeGuihua')">
                                     🛒 加入购物车
                                 </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '桂花黄豆奶茶', 'S$6.80')">
+                                <button class="order-btn whatsapp-btn" onclick="orderSignatureProduct('homeGuihua')">
                                     📱 立即订购
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="product-card">
-                        <div class="product-image">🌹</div>
+                    <!-- 新产品：洛神四宝饮 -->
+                    <div class="product-card featured">
+                        <div class="product-badge">🌟 全新推出</div>
+                        <div class="product-image">
+                            <img src="images/Luoshensibao.jpg" alt="洛神四宝饮 - 黑豆红豆洛神花红枣养颜佳品" class="product-photo">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-name">玫瑰红豆拿铁</h3>
-                            <p class="product-description">浪漫玫瑰花瓣与红豆的甜蜜邂逅，颜值与美味并存</p>
-                            <div class="product-price">S$7.50</div>
+                            <h3 class="product-name">洛神四宝饮</h3>
+                            <p class="product-description">珍贵四重配方：黑豆红豆双豆营养，洛神花酸甜回甘，红枣温润补血，养颜美容圣品</p>
+                            <div class="product-highlights">
+                                <span class="highlight">💖 美颜圣品</span>
+                                <span class="highlight">🌺 洛神花香</span>
+                                <span class="highlight">🔥 四宝精华</span>
+                            </div>
+                            <div class="product-price" id="homeLuoshenPrice">S$8.50</div>
+                            
+                            <!-- 产品定制选项 -->
+                            <div class="product-options">
+                                <!-- 杯型选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">杯型:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSize('homeLuoshen', 'large', 8.50)">
+                                            大杯
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSize('homeLuoshen', 'small', 7.50)">
+                                            小杯
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 温度选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">温度:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectTemperature('homeLuoshen', 'hot')">
+                                            🔥 热饮
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectTemperature('homeLuoshen', 'cold')">
+                                            🧊 冰饮
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 糖分选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">糖分:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeLuoshen', 'none')">
+                                            无糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeLuoshen', 'half')">
+                                            半糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeLuoshen', 'standard')">
+                                            标准糖
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- 数量选择 -->
                             <div class="quantity-selector">
-                                <label for="homeQuantity2">数量:</label>
+                                <label for="homeLuoshenQuantity">数量:</label>
                                 <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('homeQuantity2', -1)">-</button>
-                                    <input type="number" id="homeQuantity2" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('homeQuantity2', 1)">+</button>
+                                    <button type="button" onclick="changeQuantity('homeLuoshenQuantity', -1)">-</button>
+                                    <input type="number" id="homeLuoshenQuantity" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('homeLuoshenQuantity', 1)">+</button>
                                 </div>
                             </div>
                             
                             <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('玫瑰红豆拿铁', 'S$7.50', '🌹', 'homeQuantity2')">
+                                <button class="order-btn cart-btn" onclick="addSignatureToCart('homeLuoshen')">
                                     🛒 加入购物车
                                 </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '玫瑰红豆拿铁', 'S$7.50')">
+                                <button class="order-btn whatsapp-btn" onclick="orderSignatureProduct('homeLuoshen')">
                                     📱 立即订购
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="product-card">
-                        <div class="product-image">🌿</div>
+                    <!-- 新产品：茉莉双豆语 -->
+                    <div class="product-card featured">
+                        <div class="product-badge">🌟 全新推出</div>
+                        <div class="product-image">
+                            <img src="images/Molidouyu.jpg" alt="茉莉双豆语 - 黑豆绿豆茉莉花清香融合" class="product-photo">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-name">茉莉绿豆沙冰</h3>
-                            <p class="product-description">清香茉莉花配绿豆，清热解毒，夏日首选</p>
-                            <div class="product-price">S$6.20</div>
+                            <h3 class="product-name">茉莉双豆语</h3>
+                            <p class="product-description">黑豆与绿豆的营养双重奏，配以清香茉莉花，口感清新淡雅，具有清热解毒功效</p>
+                            <div class="product-highlights">
+                                <span class="highlight">🌿 清热解毒</span>
+                                <span class="highlight">🌸 茉莉清香</span>
+                            </div>
+                            <div class="product-price" id="homeMoliPrice">S$6.80</div>
+                            
+                            <!-- 产品定制选项 -->
+                            <div class="product-options">
+                                <!-- 杯型选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">杯型:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSize('homeMoli', 'large', 6.80)">
+                                            大杯
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSize('homeMoli', 'small', 5.80)">
+                                            小杯
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 温度选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">温度:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectTemperature('homeMoli', 'hot')">
+                                            🔥 热饮
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectTemperature('homeMoli', 'cold')">
+                                            🧊 冰饮
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 糖分选择 -->
+                                <div class="option-group">
+                                    <label class="option-label">糖分:</label>
+                                    <div class="option-buttons">
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeMoli', 'none')">
+                                            无糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeMoli', 'half')">
+                                            半糖
+                                        </button>
+                                        <button type="button" class="option-btn" onclick="selectSugar('homeMoli', 'standard')">
+                                            标准糖
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- 数量选择 -->
                             <div class="quantity-selector">
-                                <label for="homeQuantity3">数量:</label>
+                                <label for="homeMoliQuantity">数量:</label>
                                 <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('homeQuantity3', -1)">-</button>
-                                    <input type="number" id="homeQuantity3" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('homeQuantity3', 1)">+</button>
+                                    <button type="button" onclick="changeQuantity('homeMoliQuantity', -1)">-</button>
+                                    <input type="number" id="homeMoliQuantity" value="1" min="1" max="10" readonly>
+                                    <button type="button" onclick="changeQuantity('homeMoliQuantity', 1)">+</button>
                                 </div>
                             </div>
                             
                             <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('茉莉绿豆沙冰', 'S$6.20', '🌿', 'homeQuantity3')">
+                                <button class="order-btn cart-btn" onclick="addSignatureToCart('homeMoli')">
                                     🛒 加入购物车
                                 </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '茉莉绿豆沙冰', 'S$6.20')">
+                                <button class="order-btn whatsapp-btn" onclick="orderSignatureProduct('homeMoli')">
                                     📱 立即订购
                                 </button>
                             </div>
@@ -1177,19 +1337,67 @@
             }
         }
 
-        // 红粉豆语产品定制选项功能
+        // 产品定制选项功能
         let signatureOptions = {
+            // 红粉豆语
             'homeSignature': {
                 size: null,
                 temperature: null,
                 sugar: null,
-                price: 7.80
+                price: 7.80,
+                name: '红粉豆语'
             },
             'signature': {
                 size: null, 
                 temperature: null,
                 sugar: null,
-                price: 7.80
+                price: 7.80,
+                name: '红粉豆语'
+            },
+            // 桂花双豆奶
+            'homeGuihua': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 7.20,
+                name: '桂花双豆奶'
+            },
+            'guihua': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 7.20,
+                name: '桂花双豆奶'
+            },
+            // 茉莉双豆语
+            'homeMoli': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 6.80,
+                name: '茉莉双豆语'
+            },
+            'moli': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 6.80,
+                name: '茉莉双豆语'
+            },
+            // 洛神四宝饮
+            'homeLuoshen': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 8.50,
+                name: '洛神四宝饮'
+            },
+            'luoshen': {
+                size: null,
+                temperature: null,
+                sugar: null,
+                price: 8.50,
+                name: '洛神四宝饮'
             }
         };
 
@@ -1198,11 +1406,19 @@
             const clickedButton = event.target;
             const isCurrentlyActive = clickedButton.classList.contains('active');
             
+            // 获取产品的初始价格映射
+            const defaultPrices = {
+                'homeSignature': 7.80, 'signature': 7.80,
+                'homeGuihua': 7.20, 'guihua': 7.20,
+                'homeMoli': 6.80, 'moli': 6.80,
+                'homeLuoshen': 8.50, 'luoshen': 8.50
+            };
+            
             // 如果点击的是已选中的选项，取消选择
             if (isCurrentlyActive) {
                 clickedButton.classList.remove('active');
                 signatureOptions[productId].size = null;
-                signatureOptions[productId].price = 7.80; // 默认显示大杯价格
+                signatureOptions[productId].price = defaultPrices[productId]; // 使用对应产品的默认价格
                 updatePrice(productId);
                 return;
             }
@@ -1275,7 +1491,7 @@
             const tempText = options.temperature === 'hot' ? '热饮' : (options.temperature === 'cold' ? '冰饮' : '常温');
             const sugarText = options.sugar === 'none' ? '无糖' : (options.sugar === 'half' ? '半糖' : (options.sugar === 'standard' ? '标准糖' : '不加糖'));
             
-            return `红粉豆语 (${sizeText}/${tempText}/${sugarText})`;
+            return `${options.name} (${sizeText}/${tempText}/${sugarText})`;
         }
 
         // 添加红粉豆语到购物车
