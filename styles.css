@@ -268,6 +268,89 @@ main {
     margin-bottom: 0.5rem;
 }
 
+.product-ingredients {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.ingredients-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ingredients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.ingredient-item {
+    background: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #495057;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.ingredient-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-effects {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border-radius: 10px;
+    border: 1px solid #f8d7da;
+}
+
+.effects-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.effects-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.effect-item {
+    background: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #856404;
+    border: 1px solid #f5c6cb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.effect-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: #ffeaa7;
+}
+
 .product-description {
     color: #666;
     font-size: 0.9rem;
