@@ -33,7 +33,7 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">🔥 热饮系列 Hot Drinks</h2>
+                <h2 class="section-title">🌟 我们的饮品 Our Beverages</h2>
                 <div class="product-grid">
                     <!-- 招牌产品：红粉豆语 -->
                     <div class="product-card featured">
@@ -199,33 +199,7 @@
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">🌹</div>
-                        <div class="product-info">
-                            <h3 class="product-name">玫瑰红豆拿铁</h3>
-                            <p class="product-description">优质红豆研磨制作，加入新鲜玫瑰花瓣，口感香甜。具有补血养颜、美容护肤的功效。</p>
-                            <div class="product-price">S$7.50</div>
-                            
-                            <!-- 数量选择 -->
-                            <div class="quantity-selector">
-                                <label for="quantity2">数量:</label>
-                                <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('quantity2', -1)">-</button>
-                                    <input type="number" id="quantity2" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('quantity2', 1)">+</button>
-                                </div>
-                            </div>
-                            
-                            <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('玫瑰红豆拿铁', 'S$7.50', '🌹', 'quantity2')">
-                                    🛒 加入购物车
-                                </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '玫瑰红豆拿铁', 'S$7.50')">
-                                    📱 立即订购
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <!-- 新产品：洛神四宝饮 -->
                     <div class="product-card featured">
@@ -309,14 +283,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="section bg-pattern">
-            <div class="container">
-                <h2 class="section-title">🧊 冷饮系列</h2>
-                <div class="product-grid">
                     <!-- 新产品：茉莉双豆语 -->
                     <div class="product-card featured">
                         <div class="product-badge">🌟 全新推出</div>
@@ -325,12 +292,12 @@
                         </div>
                         <div class="product-info">
                             <h3 class="product-name">茉莉双豆语 Jasmine Twin Beans</h3>
-                            <p class="product-description">黑豆与绿豆的营养双重奏，配以清香茉莉花香。黑豆富含花青素，绿豆清热解毒，茉莉花舒缓怡神，口感清新淡雅，具有清热解毒、美容养颜的功效，是夏日清爽的完美选择。</p>
+                            <p class="product-description">黑豆与绿豆的营养双重奏，配以清香茉莉花香。黑豆富含花青素，绿豆清热解毒，茉莉花舒缓怡神，口感清新淡雅，具有清热解毒、美容养颜的功效，冷热皆宜的完美选择。</p>
                             <div class="product-highlights">
                                 <span class="highlight">🌿 清热解毒</span>
                                 <span class="highlight">🌸 茉莉清香</span>
                                 <span class="highlight">💚 双豆精华</span>
-                                <span class="highlight">❄️ 清爽怡人</span>
+                                <span class="highlight">❄️ 冷热皆宜</span>
                             </div>
                             <div class="product-price" id="moliPrice">S$6.80</div>
                             
@@ -399,65 +366,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="product-card">
-                        <div class="product-image">🌸</div>
-                        <div class="product-info">
-                            <h3 class="product-name">樱花豌豆冰茶</h3>
-                            <p class="product-description">颜值担当！粉嫩樱花配上清香豌豆，视觉与味觉的双重享受。</p>
-                            <div class="product-price">S$8.50</div>
-                            
-                            <!-- 数量选择 -->
-                            <div class="quantity-selector">
-                                <label for="quantity5">数量:</label>
-                                <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('quantity5', -1)">-</button>
-                                    <input type="number" id="quantity5" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('quantity5', 1)">+</button>
-                                </div>
-                            </div>
-                            
-                            <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('樱花豌豆冰茶', 'S$8.50', '🌸', 'quantity5')">
-                                    🛒 加入购物车
-                                </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '樱花豌豆冰茶', 'S$8.50')">
-                                    📱 立即订购
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">💜</div>
-                        <div class="product-info">
-                            <h3 class="product-name">薰衣草红豆奶昔</h3>
-                            <p class="product-description">浪漫薰衣草香与红豆的甜蜜结合，具有安神助眠的功效。</p>
-                            <div class="product-price">S$8.20</div>
-                            
-                            <!-- 数量选择 -->
-                            <div class="quantity-selector">
-                                <label for="quantity6">数量:</label>
-                                <div class="quantity-controls">
-                                    <button type="button" onclick="changeQuantity('quantity6', -1)">-</button>
-                                    <input type="number" id="quantity6" value="1" min="1" max="10" readonly>
-                                    <button type="button" onclick="changeQuantity('quantity6', 1)">+</button>
-                                </div>
-                            </div>
-                            
-                            <div class="order-buttons">
-                                <button class="order-btn cart-btn" onclick="addToCart('薰衣草红豆奶昔', 'S$8.20', '💜', 'quantity6')">
-                                    🛒 加入购物车
-                                </button>
-                                <button class="order-btn whatsapp-btn" onclick="startDeliveryVerification('whatsapp', '薰衣草红豆奶昔', 'S$8.20')">
-                                    📱 立即订购
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
+
+
     </main>
 
     <!-- 购物车悬浮图标 -->
